@@ -258,3 +258,14 @@ footer {
 	height: 200px;
 	font-size : 18px;
 }
+
+#tip {
+width:auto;
+height:auto;
+max-width: 300px;
+display:none;
+position:absolute;
+background-color:#A9F5F2;
+font-size:16px;
+
+}
