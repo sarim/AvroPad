@@ -12,6 +12,14 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 	<script data-main="lib/main.js" src="lib/require.js"></script>
+	<script type="text/javascript">
+	require.config({
+	  waitSeconds: 300,
+	  // timeout to 5 minute
+	  urlArgs: "bust=" +  (new Date()).getTime()
+	  //disabling cache
+	});
+	</script>
   </head>
   <body>
     <div class="wrapper">
