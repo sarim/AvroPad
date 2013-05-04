@@ -17,7 +17,7 @@ var emojis = [
     "warning", "watermelon", "wave", "wc", "wedding", "whale", "wheelchair",
     "white_square", "wind_chime", "wink", "wink2", "wolf", "woman",
     "womans_hat", "womens", "x", "yellow_heart", "zap", "zzz", "+1",
-    "-1", "0", "1", "109", "2", "3", "4", "5", "6", "7", "8", "8ball", "9"
+    "-1"
 ]
 var names = ["Jacob","Isabella","Ethan","Emma","Michael","Olivia","Alexander","Sophia","William","Ava","Joshua","Emily","Daniel","Madison","Jayden","Abigail","Noah","Chloe","你好","你你你"];
 
@@ -27,11 +27,19 @@ var names = $.map(names,function(value,i) {
 var emojis = $.map(emojis, function(value, i) {return {key: value + ':', name:value}});
 
 $(function(){
-    $('textarea').atwho('@', {
+    $inputor = $('textarea').atwho({
+        at: "@",
         data: names,
         tpl: "<li data-value='${name}'>${name} <small>${email}</small></li>"
-    }).atwho(':', {
+    }).atwho({
+        at: "#",
+        data: names,
+        tpl: "<li data-value='${name}'> issues${id} from ${name}</li>"
+    }).atwho({
+        at: ":",
         data: emojis,
         tpl:"<li data-value='${key}'>${name} <img src='http://a248.e.akamai.net/assets.github.com/images/icons/emoji/${name}.png'  height='20' width='20' /></li>"
-    })
+    });
+    $inputor.caret('pos', 47);
+    $inputor.focus().atwho('run');
 });
