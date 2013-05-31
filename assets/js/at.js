@@ -29,8 +29,14 @@ var emojis = $.map(emojis, function(value, i) {return {key: value + ':', name:va
 $(function(){
     $inputor = $('textarea').atwho({
         at: "@",
-        data: names,
-        tpl: "<li data-value='${name}'>${name} <small>${email}</small></li>"
+        // data: names,
+        data: "assets/data.json",
+        tpl: "<li data-value='${name}'>${name} <small>${email}</small></li>",
+        callbacks: {
+            before_save: function(data) {
+                return this.super_call("before_save", data.names);
+            }
+        }
     }).atwho({
         at: "#",
         data: names,
