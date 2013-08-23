@@ -357,7 +357,7 @@
       return factory(window.jQuery);
     }
   })(function($) {
-    var $CONTAINER, Api, App, Controller, DEFAULT_CALLBACKS, KEY_CODE, Model, View;
+    var $CONTAINER, Api, App, Atwho, Controller, DEFAULT_CALLBACKS, KEY_CODE, Model, View;
     App = (function() {
 
       function App(inputor) {
@@ -477,11 +477,13 @@
       function Controller(app, key) {
         this.app = app;
         this.key = key;
+        this.at = this.key;
         this.$inputor = this.app.$inputor;
         this.id = this.$inputor[0].id || uuid();
         this.setting = null;
         this.query = null;
         this.pos = 0;
+        this.cur_rect = null;
         $CONTAINER.append(this.$el = $("<div id='atwho-ground-" + this.id + "'></div>"));
         this.model = new Model(this);
         this.view = new View(this);
@@ -555,6 +557,9 @@
       Controller.prototype.rect = function() {
         var c, scale_bottom;
         c = this.$inputor.caret('offset', this.pos - 1);
+        if (this.$inputor.attr('contentEditable') === 'true') {
+          c = (this.cur_rect || (this.cur_rect = c)) || c;
+        }
         scale_bottom = document.selection ? 0 : 2;
         return {
           left: c.left,
@@ -563,49 +568,56 @@
         };
       };
 
+      Controller.prototype.reset_rect = function() {
+        if (this.$inputor.attr('contentEditable') === 'true') {
+          return this.cur_rect = null;
+        }
+      };
+
       Controller.prototype.insert_content_for = function($li) {
-        var at, data, data_value, tpl;
+        var data, data_value, tpl;
         data_value = $li.data('value');
         tpl = this.get_opt('insert_tpl');
         if (this.$inputor.is('textarea, input') || !tpl) {
           return data_value;
         }
-        at = this.get_opt('at');
-        data = $.extend({}, $li.data('atwho-data-itemInfo'), {
+        data = $.extend({}, $li.data('item-data'), {
           'atwho-data-value': data_value,
-          'atwho-at': at
+          'atwho-at': this.at
         });
         return this.callbacks("tpl_eval").call(this, tpl, data);
       };
 
-      Controller.prototype.insert = function(content) {
-        var $inputor, at_len, pos, range, sel, source, start_str, text;
+      Controller.prototype.insert = function(content, $li) {
+        var $inputor, $insert_node, pos, range, sel, source, start_str, text;
         $inputor = this.$inputor;
-        at_len = this.get_opt('show_the_at') ? 0 : this.get_opt('at').length;
+        if ($inputor.attr('contentEditable') === 'true') {
+          $insert_node = $("<span contenteditable='false' " + ("class='atwho-view-flag atwho-view-flag-" + (this.get_opt('alias') || this.at) + "'>") + ("" + content + "&nbsp;</span>"));
+          $insert_node.data('atwho-data-item', $li.data('item-data'));
+          $insert_node = $("<span contentEditable='true'></span>").html($insert_node);
+        }
         if ($inputor.is('textarea, input')) {
           content = '' + content;
           source = $inputor.val();
-          start_str = source.slice(0, Math.max(this.query.head_pos - at_len, 0));
+          start_str = source.slice(0, Math.max(this.query.head_pos - this.at.length, 0));
           text = "" + start_str + content + " " + (source.slice(this.query['end_pos'] || 0));
           $inputor.val(text);
           $inputor.caret('pos', start_str.length + content.length + 1);
         } else if (window.getSelection) {
           sel = window.getSelection();
           range = sel.getRangeAt(0);
-          pos = sel.anchorOffset - (this.query.end_pos - this.query.head_pos) - at_len;
+          pos = sel.anchorOffset - (this.query.end_pos - this.query.head_pos) - this.at.length;
           range.setStart(range.endContainer, Math.max(pos, 0));
           range.setEnd(range.endContainer, range.endOffset);
           range.deleteContents();
-          range.insertNode($("<span class='atwho-view-flag'>" + content + "</span>")[0]);
-          range.collapse(false);
-          range.insertNode($('<span>&nbsp;</span>')[0]);
+          range.insertNode($insert_node[0]);
           range.collapse(false);
           sel.removeAllRanges();
           sel.addRange(range);
         } else if (document.selection) {
           range = document.selection.createRange();
-          range.moveStart('character', this.query.end_pos - this.query.head_pos - at_len);
-          range.pasteHTML("<span>" + content + "</span> ");
+          range.moveStart('character', this.query.end_pos - this.query.head_pos - this.at.length);
+          range.pasteHTML($insert_node[0]);
           range.collapse(false);
           range.select();
         }
@@ -729,7 +741,7 @@
         var $li, content;
         $li = this.$el.find(".cur");
         content = this.context.insert_content_for($li);
-        this.context.insert(this.context.callbacks("before_insert").call(this.context, content, $li));
+        this.context.insert(this.context.callbacks("before_insert").call(this.context, content, $li), $li);
         this.context.trigger("inserted", [$li]);
         return this.hide();
       };
@@ -779,6 +791,7 @@
         var callback,
           _this = this;
         if (isNaN(time && this.visible())) {
+          this.context.reset_rect();
           return this.$el.hide();
         } else {
           callback = function() {
@@ -800,9 +813,12 @@
         tpl = this.context.get_opt('tpl');
         for (_i = 0, _len = list.length; _i < _len; _i++) {
           item = list[_i];
+          item = $.extend({}, item, {
+            'atwho-at': this.context.at
+          });
           li = this.context.callbacks("tpl_eval").call(this.context, tpl, item);
           $li = $(this.context.callbacks("highlighter").call(this.context, li, this.context.query.text));
-          $li.data("atwho-data-itemInfo", item);
+          $li.data("item-data", item);
           $ul.append($li);
         }
         this.show();
@@ -905,51 +921,83 @@
       }
     };
     Api = {
-      init: function(options) {
-        var $this, app;
-        app = ($this = $(this)).data("atwho");
-        if (!app) {
-          $this.data('atwho', (app = new App(this)));
-        }
-        return app.reg(options.at, options);
-      },
       load: function(key, data) {
         var c;
         if (c = this.controller(key)) {
           return c.model.load(data);
         }
       },
+      getInsertedItemsWithIDs: function(key) {
+        var c, ids, items;
+        if (!(c = this.controller(key))) {
+          return [null, null];
+        }
+        if (key) {
+          key = "-" + (c.get_opt('alias') || c.at);
+        }
+        ids = [];
+        items = $.map(this.$inputor.find("span.atwho-view-flag" + (key || "")), function(item) {
+          var data;
+          data = $(item).data('atwho-data-item');
+          if (ids.indexOf(data.id) > -1) {
+            return;
+          }
+          if (data.id) {
+            ids.push = data.id;
+          }
+          return data;
+        });
+        return [ids, items];
+      },
+      getInsertedItems: function(key) {
+        return Api.getInsertedItemsWithIDs.apply(this, [key])[1];
+      },
+      getInsertedIDs: function(key) {
+        return Api.getInsertedItemsWithIDs.apply(this, [key])[0];
+      },
       run: function() {
         return this.dispatch();
       }
     };
+    Atwho = {
+      init: function(options) {
+        var $this, app;
+        app = ($this = $(this)).data("atwho");
+        if (!app) {
+          $this.data('atwho', (app = new App(this)));
+        }
+        app.reg(options.at, options);
+        return this;
+      }
+    };
     $CONTAINER = $("<div id='atwho-container'></div>");
     $.fn.atwho = function(method) {
-      var _args;
+      var result, _args;
       _args = arguments;
       $('body').append($CONTAINER);
-      return this.filter('textarea, input, [contenteditable=true]').each(function() {
+      result = null;
+      this.filter('textarea, input, [contenteditable=true]').each(function() {
         var app;
         if (typeof method === 'object' || !method) {
-          return Api.init.apply(this, _args);
+          return Atwho.init.apply(this, _args);
         } else if (Api[method]) {
           if (app = $(this).data('atwho')) {
-            return Api[method].apply(app, Array.prototype.slice.call(_args, 1));
+            return result = Api[method].apply(app, Array.prototype.slice.call(_args, 1));
           }
         } else {
           return $.error("Method " + method + " does not exist on jQuery.caret");
         }
       });
+      return result || this;
     };
     return $.fn.atwho["default"] = {
       at: void 0,
       alias: void 0,
       data: null,
-      tpl: "<li data-value='${name}'>${name}</li>",
-      insert_tpl: null,
+      tpl: "<li data-value='${atwho-at}${name}'>${name}</li>",
+      insert_tpl: "<span>${atwho-data-value}</span>",
       callbacks: DEFAULT_CALLBACKS,
       search_key: "name",
-      show_the_at: true,
       start_with_space: true,
       limit: 5,
       max_len: 20,
