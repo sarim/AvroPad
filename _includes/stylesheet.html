@@ -2,42 +2,28 @@
 <link rel="stylesheet" type="text/css" href="assets/css/syntax.css"/>
 <!--link href='http://fonts.googleapis.com/css?family=Dosis:400,700|Bubblegum+Sans|Overlock:400,900|PT+Sans:400,700|PT+Sans+Narrow:400,700|Magra|Asap:400,700|Share:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css' -->
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
 <style type="text/css">
-html {
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
-body {
-  font: 14px/1.6 "Lucida Grande" , "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 20px;
-  color: #333333;
-  background-color: #F9F9F9;
+html, body {
+  background:#F9F9F9;
   padding: 0;
   margin: 0;
+  font: 14px/1.6 "Lucida Grande", "Helvetica", sans-serif;
+  color: #333;
+}
+h1,h2,h3,h4 {
+  font-family: 'PT Sans', sans-serif;
+  line-height: 40px;
+  color: inherit;
+  font-weight: bold;
+  margin: 10px 0;
+  text-rendering: optimizelegibility;
+}
+h2,h3 {
+  color: gray;
 }
 strong {
   color: #424242;
-}
-
-h1,h2,h3,h4 {
-  margin: 10px 0;
-  font-family: inherit;
-  font-family: 'PT Sans', sans-serif;
-  font-weight: bold;
-  line-height: 20px;
-  color: inherit;
-  text-rendering: optimizelegibility;
-}
-h1.head {
-  margin-top: 0;
-  font-size: 75px;
-  margin-bottom: 35px;
-  color:  inherit;
-}
-
-strong {
-  color: rgb(121, 119, 119);
 }
 
 a {
@@ -52,30 +38,36 @@ a:hover {
   padding: 20px;
   margin: 0 auto;
 }
-#preview {
-  text-align: center;
-}
 header {
   margin-top:70px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+}
+header h1 {
   text-align: center;
+  font-size: 75px;
 }
-textarea {
-  height: 160px;
-  width: 100%;
-  border: 1px solid #dadada;
-  border-radius: 5px;
-  padding: 10px 14px;
-  outline: 0 none;
-  margin: 20px 0;
-  font-size: 14px;
+h1 i {
+  color: rgb(182, 180, 180);
+  font-style: normal;
   font-weight: normal;
-  line-height: 20px;
 }
-textarea:focus {
-  border: 1px solid #4183C4;
-  box-shadow: inset 0px 0px 2px rgb(177, 177, 177);
+
+.inputor {
+  height: 160px;
+  width: 90%;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 5px 8px;
+  outline: 0 none;
+  margin: 10px 0;
+  background: white;
+  font-size: inherit;
 }
+.inputor:focus {
+  border: 1px solid rgb(6, 150, 247);
+}
+
+
 ul.doc {
   list-style:none;
 }
@@ -83,7 +75,13 @@ ul.doc li {
   display:inline-block;
   margin: 0 10px;
 }
+
 footer {
-  height: 100px;
+  margin: 30px 0;
 }
+
+.github {
+  text-align: center;
+}
+
 </style>

@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
         <title>At.js</title>
         {% include stylesheet.html %}
     </head>
@@ -11,14 +11,13 @@
         <div class="container wrapper">
             {% include fork_me.html %}
             <header>
-                <h1 class="head">At.js {% include version.html %}</h1>
-                <h3></h3>
+              <h1>At<i>.js</i></h1>
             </header>
             <div id="main">
               {{content}}
             </div>
             {% include javascript.html %}
+            {% include footer.html %}
         </div>
-        {% include footer.html %}
     </body>
 </html>

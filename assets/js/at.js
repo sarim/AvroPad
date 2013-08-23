@@ -27,14 +27,14 @@ var names = $.map(names,function(value,i) {
 var emojis = $.map(emojis, function(value, i) {return {key: value + ':', name:value}});
 
 $(function(){
-    $inputor = $('textarea').atwho({
+    $inputor = $('#inputor').atwho({
         at: "@",
         // data: names,
         data: "assets/data.json",
         tpl: "<li data-value='${name}'>${name} <small>${email}</small></li>",
         callbacks: {
             before_save: function(data) {
-                return this.super_call("before_save", data.names);
+                return this.call_default("before_save", data.names);
             }
         }
     }).atwho({
@@ -48,4 +48,16 @@ $(function(){
     });
     $inputor.caret('pos', 47);
     $inputor.focus().atwho('run');
+
+    $('#editable').atwho({
+        at: ":",
+        data: emojis,
+        tpl:"<li data-value='${key}'>${name} <img src='http://a248.e.akamai.net/assets.github.com/images/icons/emoji/${name}.png'  height='20' width='20' /></li>",
+        insert_tpl: "<img src='http://a248.e.akamai.net/assets.github.com/images/icons/emoji/${name}.png'  height='20' width='20' />",
+        show_the_at: false
+    }).atwho({
+        at: "@",
+        data: names,
+        tpl: "<li data-value='${name}'>${name}</li>"
+    });
 });
