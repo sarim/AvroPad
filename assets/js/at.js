@@ -24,14 +24,14 @@ var names = ["Jacob","Isabella","Ethan","Emma","Michael","Olivia","Alexander","S
 var names = $.map(names,function(value,i) {
     return {'id':i,'name':value,'email':value+"@email.com"};
 });
-var emojis = $.map(emojis, function(value, i) {return {key: value + ':', name:value}});
+var emojis = $.map(emojis, function(value, i) {return {key: value, name:value}});
 
 $(function(){
     $inputor = $('#inputor').atwho({
         at: "@",
         // data: names,
         data: "assets/data.json",
-        tpl: "<li data-value='${name}'>${name} <small>${email}</small></li>",
+        tpl: "<li data-value='@${name}'>${name} <small>${email}</small></li>",
         callbacks: {
             before_save: function(data) {
                 return this.call_default("before_save", data.names);
@@ -40,11 +40,11 @@ $(function(){
     }).atwho({
         at: "#",
         data: names,
-        tpl: "<li data-value='${name}'> issues${id} from ${name}</li>"
+        tpl: "<li data-value='#${name}'> issues${id} from ${name}</li>"
     }).atwho({
         at: ":",
         data: emojis,
-        tpl:"<li data-value='${key}'>${name} <img src='http://a248.e.akamai.net/assets.github.com/images/icons/emoji/${name}.png'  height='20' width='20' /></li>"
+        tpl:"<li data-value=':${key}:'>${name} <img src='http://a248.e.akamai.net/assets.github.com/images/icons/emoji/${name}.png'  height='20' width='20' /></li>"
     });
     $inputor.caret('pos', 47);
     $inputor.focus().atwho('run');
@@ -58,6 +58,6 @@ $(function(){
     }).atwho({
         at: "@",
         data: names,
-        tpl: "<li data-value='${name}'>${name}</li>"
+        tpl: "<li data-value='@${name}'>${name}</li>"
     });
 });
