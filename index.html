@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html manifest="gittu.manifest">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -16,7 +16,7 @@
 	require.config({
 	  waitSeconds: 300,
 	  // timeout to 5 minute
-	  urlArgs: "bust=" +  (new Date()).getTime()
+	  //urlArgs: "bust=" +  (new Date()).getTime()
 	  //disabling cache
 	});
 	</script>
@@ -37,7 +37,7 @@
       </header>
       <section>
 		  
-<textarea id="entext" autocorrect="off" autocapitalize="none" placeholder="এখানে বাংলা লিখুন"></textarea>
+<textarea id="entext" autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="এখানে বাংলা লিখুন"></textarea>
 <!-- <button id="btn">suggest</button> -->
 <div id="tip"></div>
 

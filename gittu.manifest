@@ -1,0 +1,23 @@
+CACHE MANIFEST
+
+/
+stylesheets/styles.css
+stylesheets/pygment_trac.css
+lib/require.js
+javascripts/scale.fix.js
+lib/autocorrect.js
+lib/avrodict.js
+lib/avroim.js
+lib/avrolib.js
+lib/avroregexlib.js
+lib/caretposition.js
+lib/dbsearch.js
+lib/engine.js
+lib/gi.js
+lib/jquery.js
+lib/levenshtein.js
+lib/main.js
+lib/require.js
+lib/suffixdict.js
+lib/suggestionbuilder.js
+lib/utf8.js
