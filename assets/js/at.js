@@ -12,7 +12,7 @@ $(function(){
     $("#loading").remove();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
-        at: 'a',
+        at: '',
         data: {},
         tpl:"<li data-value='${name}'>${name}</li>",
         start_with_space: false,
@@ -24,7 +24,7 @@ $(function(){
                res = subtext.match(/\s?(\w+)$/);
                log(subtext, res);
                if (res == null) return null;
-               return res[1];
+               return res[0];
            },
            //main work is done here
            filter: function (query, data, search_key) {
@@ -38,7 +38,7 @@ $(function(){
            },
            before_insert: function (value, li) {
                //TODO: save the selected value to user preferences;
-               return " " + value;
+               return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
            sorter: function (query, items, search_key) {
