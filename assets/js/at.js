@@ -8,7 +8,10 @@ var megusta = new AvroForGaia();
 
 //setup all the awesomeness
 $(function(){
-    var inp = $('#inputor').atwho({
+    //remote loading..
+    $("#loading").remove();
+    
+    var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: 'a',
         data: {},
         tpl:"<li data-value='${name}'>${name}</li>",
@@ -45,5 +48,6 @@ $(function(){
                return li;
            }
         }
-    });
+    }).focus();
+    
 });
