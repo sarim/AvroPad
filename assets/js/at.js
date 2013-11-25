@@ -21,10 +21,10 @@ $(function(){
         {
            //just match everything baby :3
            matcher: function (flag, subtext) {
-               res = subtext.match(/\s?(\w+)$/);
+               res = subtext.match(/\s?([^\s]+)$/);
                log(subtext, res);
                if (res == null) return null;
-               return res[0];
+               return res[1];
            },
            //main work is done here
            filter: function (query, data, search_key) {
