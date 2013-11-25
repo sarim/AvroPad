@@ -459,6 +459,7 @@
             view.next();
             break;
           case KEY_CODE.TAB:
+          case KEY_CODE.SPACE:
           case KEY_CODE.ENTER:
             if (!view.visible()) {
               return;
@@ -871,7 +872,8 @@
       UP: 38,
       ESC: 27,
       TAB: 9,
-      ENTER: 13
+      ENTER: 13,
+      SPACE: 32
     };
     DEFAULT_CALLBACKS = {
       before_save: function(data) {
