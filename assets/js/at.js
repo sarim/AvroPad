@@ -51,4 +51,15 @@ $(function(){
         }
     }).focus();
     
+    $(document).on("keydown", function (e){
+        if (e.ctrlKey && "K".charCodeAt(0) == e.keyCode) {
+            e.preventDefault();
+            if ($('#chklang').prop('checked')) {
+                $('#chklang').prop('checked', false);
+            } else {
+                $('#chklang').prop('checked', true);
+            }
+        }
+    });
+    
 });
