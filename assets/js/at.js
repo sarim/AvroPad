@@ -63,3 +63,7 @@ $(function(){
     });
     
 });
+
+$(window).load(function() {
+    $('#inputor')[0].scrollIntoView();
+});
