@@ -48,6 +48,7 @@
 @media screen and (min-width:800px) {
     .atwho-view ul li {
         display: block;
+        float: none;
     }
     .atwho-view {
         
