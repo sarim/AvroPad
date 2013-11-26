@@ -554,7 +554,7 @@
           end = start + query.length;
           this.pos = start;
           query = {
-            'text': query.toLowerCase(),
+            'text': query,
             'head_pos': start,
             'end_pos': end
           };
