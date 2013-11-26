@@ -21,6 +21,7 @@ $(function(){
         {
            //just match everything baby :3
            matcher: function (flag, subtext) {
+               if (! $('#chklang').prop('checked')) return null; // always return null when user selects english
                res = subtext.match(/\s?([^\s]+)$/);
                log(subtext, res);
                if (res == null) return null;
