@@ -4,7 +4,7 @@ function log() {
 }
 
 //init the avro
-var megusta = new AvroForGaia();
+var megusta = new AvroPhonetic(lSLoader, lSSaver);
 
 //setup all the awesomeness
 $(function(){
@@ -14,7 +14,7 @@ $(function(){
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
         data: {},
-        tpl:"<li data-value='${name}'>${name}</li>",
+        tpl:"<li data-value='${name}' data-select='${selected}'>${name}</li>",
         start_with_space: false,
         limit: 10,
         callbacks:
@@ -30,15 +30,16 @@ $(function(){
            //main work is done here
            filter: function (query, data, search_key) {
                log(query, data, search_key);
-               var bnarr = megusta(query);
+               var bnarr = megusta.suggest(query);
                var bndict = [];
-               bnarr.forEach( function(a,i) {
-                   bndict.push({id: i, name: a});
+               bnarr.words.forEach( function(a,i) {
+                   bndict.push({id: i, name: a, selected: (i == bnarr.prevSelection)  });
                });
                return bndict;
            },
            before_insert: function (value, li) {
-               //TODO: save the selected value to user preferences;
+               //save the selected value to user preferences;
+               megusta.commit(this.query.text, value);
                return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
@@ -47,6 +48,10 @@ $(function(){
            },
            highlighter: function (li, query) {
                return li;
+           },
+           rendered: function (ul) {
+               ul.find('.cur').removeClass('cur');
+               return ul.find("li[data-select=true]").addClass("cur");
            }
         }
     }).focus();
