@@ -1,0 +1,167 @@
+html, body {
+  background:#F9F9F9;
+  padding: 0;
+  margin: 0;
+  font: 14px/1.6 "Lucida Grande", "Helvetica", sans-serif;
+  color: #333;
+}
+h1,h2,h3,h4 {
+  font-family: "Lucida Grande", "Helvetica", sans-serif;
+  line-height: 40px;
+  color: inherit;
+  font-weight: bold;
+  margin: 10px 0;
+  text-rendering: optimizelegibility;
+}
+h2,h3 {
+  color: gray;
+}
+strong {
+  color: #424242;
+}
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.wrapper {
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+}
+header {
+  margin-top:-15px;
+  margin-bottom: 20px;
+  margin-left: 120px;
+}
+header h1 {
+  text-align: center;
+  font-size: 36px;
+}
+@media screen and (min-width:800px) {
+	header {
+	  margin-top:70px;
+	  margin-bottom: 50px;
+	  margin-left: 0px;
+	}
+	header h1 {
+	  text-align: center;
+	  font-size: 75px;
+	}
+}
+h1 i {
+  color: rgb(182, 180, 180);
+  font-style: normal;
+  font-weight: normal;
+}
+
+.inputor {
+  height: 160px;
+  width: 90%;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  padding: 5px 8px;
+  outline: 0 none;
+  margin: 10px 0;
+  background: white;
+  font-size: 16px;
+}
+.inputor:focus {
+  border: 1px solid rgb(6, 150, 247);
+}
+
+
+ul.doc {
+  list-style:none;
+}
+ul.doc li {
+  display:inline-block;
+  margin: 0 10px;
+}
+
+footer {
+  margin: 30px 0;
+}
+
+.github {
+  text-align: center;
+}
+
+#forkmegithub {
+	display : none;
+}
+
+@media screen and (min-width:800px) {
+	#forkmegithub {
+		display : inline;
+	}
+}
+
+#forkongithub a {
+	background: #000;
+	color: #fff;
+	text-decoration: none;
+	font-family: arial, sans-serif;
+	text-align: center;
+	font-weight: bold;
+	padding: 5px 15px;
+	font-size: 1rem;
+	line-height: 2rem;
+	position: absolute;
+	transition: 0.5s;
+}
+#forkongithub a:hover {
+	background: #060;
+	color: #fff;
+}
+#forkongithub a::before,#forkongithub a::after {
+	content: "";
+	width: 100%;
+	display: block;
+	position: absolute;
+	top: 1px;
+	left: 0;
+	height: 1px;
+	background: #fff;
+}
+#forkongithub a::after {
+	bottom: 1px;
+	top: auto;
+}
+
+#hotkeytip {
+	display: none;
+}
+
+@media screen and (min-width:800px) {
+	#hotkeytip {
+		display: inline;
+	}
+	#forkongithub {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 200px;
+		overflow: hidden;
+		height: 200px;
+	}
+	#forkongithub a {
+		width: 200px;
+		position: absolute;
+		top: 60px;
+		left: -60px;
+		padding: 5px 40px;
+		transform: rotate(-45deg);
+		-webkit-transform: rotate(-45deg);
+		box-shadow: 4px 4px 10px rgba(0,0,0,0.8);
+	}
+}
+
+label {
+	position: relative;
+	display: block;
+}

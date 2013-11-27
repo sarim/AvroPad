@@ -10,18 +10,6 @@
         {% include stylesheet.html %}
     </head>
     <body>
-        <div class="container wrapper">
-            {% include fork_me.html %}
-            <header>
-              <h1>Avro<i>pad</i></h1>
-            </header>
-            {% include toggle_btn.html %}
-            <div id="main">
-              {{content}}
-            </div>
-			<h2 id="loading"> Loading ... </h2>
-            {% include javascript.html %}
-            {% include footer.html %}
-        </div>
+		{{content}}
     </body>
 </html>
