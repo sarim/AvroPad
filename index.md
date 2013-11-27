@@ -9,11 +9,11 @@ layout: home
     </header>
     {% include toggle_btn.html %}
     <div id="main">
-		<div>
-		  <textarea id="inputor" class="inputor" placeholder="Write Here" disabled="disabled" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
-		</div>
+        <div>
+          <textarea id="inputor" class="inputor" placeholder="Write Here" disabled="disabled" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+        </div>
     </div>
-	<h2 id="loading"> Loading ... </h2>
+    <h2 id="loading"> Loading ... </h2>
     {% include javascript.html %}
     {% include footer.html %}
 </div>
