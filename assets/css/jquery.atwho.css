@@ -34,10 +34,11 @@
 }
 .atwho-view ul li {
     display: inline;
-    padding: 5px 10px;
+    padding: 7px 12px;
     border-bottom: 1px solid #DDD;
     cursor: pointer;
     float:left;
+    font-size: 16px;
 }
 .atwho-view small {
     font-size: smaller;
@@ -49,6 +50,7 @@
     .atwho-view ul li {
         display: block;
         float: none;
+        padding: 5px 10px;
     }
     .atwho-view {
         
