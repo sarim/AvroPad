@@ -867,7 +867,7 @@
           $ul.append($li);
         }
         this.show();
-        return $ul.find("li:first").addClass("cur");
+        return this.context.callbacks("rendered").call(this.context, $ul);
       };
 
       return View;
@@ -964,7 +964,10 @@
       },
       before_insert: function(value, $li) {
         return value;
-      }
+      },
+      rendered: function(ul) {
+          
+      },
     };
     Api = {
       load: function(key, data) {
