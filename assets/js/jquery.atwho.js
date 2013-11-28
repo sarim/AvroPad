@@ -767,7 +767,7 @@
           $menu.find('.cur').removeClass('cur');
           return $(e.currentTarget).addClass('cur');
         }).on('click', function(e) {
-          _this.choose();
+          _this.choose(" ");
           return e.preventDefault();
         });
         return this.$el.on('mouseenter.atwho-view', 'ul', function(e) {
