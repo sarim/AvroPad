@@ -2,7 +2,7 @@
 <script type="text/javascript">
 // using console.log from log function, so it'll be easier to remove disable log later.
 function log() {
-    console.log.apply(console,arguments);
+    if (window.console) console.log.apply(console,arguments);
 }
 </script>
 <script type="text/javascript" src="assets/js/prefixfree.min.js"></script>
