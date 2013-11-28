@@ -80,6 +80,12 @@ $(function(){
     hammer.on("swiperight", function() {
         toggleLang();
     });
+    
+    $("ul").hammer().on("touch", function(e) {
+        log("touch", e);
+        $('.cur').removeClass('cur');
+        $(e.target).addClass('cur');
+    });
 });
 
 $(window).load(function() {
