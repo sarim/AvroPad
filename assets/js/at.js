@@ -68,8 +68,7 @@ $(function(){
            },
            before_insert: function (value, li) {
                //save the selected value to user preferences;
-               if (this.query.text != value) //dont save if user selects english word
-                   megusta.commit(this.query.text, value);
+               megusta.commit(this.query.text, value);
                return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
