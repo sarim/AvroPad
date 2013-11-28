@@ -4,6 +4,7 @@ html, body {
   margin: 0;
   font: 14px/1.6 "Lucida Grande", "Helvetica", sans-serif;
   color: #333;
+  min-height: 100%;
 }
 h1,h2,h3,h4 {
   font-family: "Lucida Grande", "Helvetica", sans-serif;
@@ -119,6 +120,9 @@ footer {
 #hotkeytip {
 	display: none;
 }
+#hotkeyswipe {
+    display: inline;
+}
 
 label {
 	position: relative;
@@ -146,6 +150,9 @@ label {
 	#hotkeytip {
 		display: inline;
 	}
+    #hotkeyswipe {
+        display: none;
+    }
 	#forkongithub {
 		position: absolute;
 		display: block;

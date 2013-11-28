@@ -6,6 +6,14 @@ function log() {
 //init the avro
 var megusta = new AvroPhonetic(lSLoader, lSSaver);
 
+function toggleLang() {
+    if ($('#chklang').prop('checked')) {
+        $('#chklang').prop('checked', false);
+    } else {
+        $('#chklang').prop('checked', true);
+    }
+}
+
 //setup all the awesomeness
 $(function(){
     //remote loading..
@@ -59,14 +67,17 @@ $(function(){
     $(document).on("keydown", function (e){
         if (e.ctrlKey && "K".charCodeAt(0) == e.keyCode) {
             e.preventDefault();
-            if ($('#chklang').prop('checked')) {
-                $('#chklang').prop('checked', false);
-            } else {
-                $('#chklang').prop('checked', true);
-            }
+            toggleLang();
         }
     });
     
+    var hammer = $("html").hammer();
+    hammer.on("swipeleft", function() {
+        toggleLang();
+    });
+    hammer.on("swiperight", function() {
+        toggleLang();
+    });
 });
 
 $(window).load(function() {
