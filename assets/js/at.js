@@ -33,7 +33,7 @@ $(function(){
                res = subtext.match(/\s?([^\s]+)$/);
                log(subtext, res);
                if (res == null) return null;
-               var bnregex = /[\u0980-\u09FF]+/g;
+               var bnregex = /[\u0980-\u09FF]+$/;
                if (bnregex.exec(res[1])) return null;
                return res[1];
            },
