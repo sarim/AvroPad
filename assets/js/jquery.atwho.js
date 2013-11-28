@@ -793,7 +793,6 @@
       View.prototype.reposition = function(rect) {
         var offset;
         if (rect.bottom + this.$el.height() - $(window).scrollTop() > $(window).height()) {
-          console.log("Moving up");
           rect.bottom = rect.top - this.$el.height();
         }
         offset = {
@@ -801,7 +800,6 @@
           top: rect.bottom
         };
         if ( (rect.left+10)*2 - $(window).scrollLeft() > $(window).width()) {
-          console.log("moving left");
           offset.left = offset.left + 50 - this.$el.width();
           if (offset.left < 5) offset.left = 5;
         }

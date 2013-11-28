@@ -1,6 +1,6 @@
-// using console.log from log function, so it'll be easier to remove disable log later.
-function log() {
-    console.log.apply(console,arguments);
+//this is prod version of log. totally silent.
+if (typeof window.log == "undefined") {
+    log = function () {}
 }
 
 //init the avro

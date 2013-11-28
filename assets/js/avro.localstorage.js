@@ -9,6 +9,6 @@ function lSLoader() {
 }
 
 function lSSaver(cS) {
-    console.log(cS);
+    log("saving CandidateSelection", cS);
     localStorage.AvroCandidateSelection = JSON.stringify(cS);
 }
