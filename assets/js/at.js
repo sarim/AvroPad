@@ -16,7 +16,7 @@ function toggleLang() {
         $('#langflash').html("BN");
     }
     if (checkInView('label'))
-        $('#langflash').show().delay(300).fadeOut(300);
+        $('#langflash').fadeIn(200).delay(300).fadeOut(300);
 }
 
 // element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified

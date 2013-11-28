@@ -134,7 +134,7 @@ label {
     position: fixed;
     top: 0;
     right: 0;
-    background-color: black;
+    background-color: rgb(45, 45, 45);;
     color: white;
     font-size: 28px;
     padding: 5px 10px;
