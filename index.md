@@ -17,3 +17,6 @@ layout: home
     {% include javascript.html %}
     {% include footer.html %}
 </div>
+<div id="langflash">
+	BN
+</div>

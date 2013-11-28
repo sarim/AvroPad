@@ -6,12 +6,29 @@ function log() {
 //init the avro
 var megusta = new AvroPhonetic(lSLoader, lSSaver);
 
+//toggle the language button
 function toggleLang() {
     if ($('#chklang').prop('checked')) {
         $('#chklang').prop('checked', false);
+        $('#langflash').html("EN");
     } else {
         $('#chklang').prop('checked', true);
+        $('#langflash').html("BN");
     }
+    if (checkInView('label'))
+        $('#langflash').show().delay(300).fadeOut(300);
+}
+
+// element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified
+function checkInView(elem,partial)
+{
+    var container = $("body");
+    var contTop = container.scrollTop();
+
+    var elemTop = $(elem).offset().top - container.offset().top;
+    var elemBottom = elemTop + $(elem).height() / 2;
+
+    return elemBottom < contTop ;
 }
 
 //setup all the awesomeness

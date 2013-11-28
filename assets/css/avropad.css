@@ -129,6 +129,17 @@ label {
 	display: block;
 }
 
+#langflash {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+    font-size: 28px;
+    padding: 5px 10px;
+}
+
 @media screen and (min-width:800px) {
 	header {
 	  margin-top:70px;
