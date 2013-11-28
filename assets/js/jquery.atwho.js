@@ -460,6 +460,12 @@
             break;
           case KEY_CODE.TAB:
           case KEY_CODE.SPACE:
+            if (!view.visible()) {
+              return;
+            }
+            e.preventDefault();
+            view.choose(" ");
+            break;              
           case KEY_CODE.ENTER:
             if (!view.visible()) {
               return;
@@ -617,8 +623,9 @@
         return this.callbacks("tpl_eval").call(this, tpl, data);
       };
 
-      Controller.prototype.insert = function(content, $li) {
+      Controller.prototype.insert = function(content, $li, space) {
         var $inputor, $insert_node, class_name, content_node, insert_node, pos, range, sel, source, start_str, text;
+        if (typeof space == 'undefined') space = '';
         $inputor = this.$inputor;
         if ($inputor.attr('contentEditable') === 'true') {
           class_name = "atwho-view-flag atwho-view-flag-" + (this.get_opt('alias') || this.at);
@@ -633,7 +640,7 @@
           content = '' + content;
           source = $inputor.val();
           start_str = source.slice(0, Math.max(this.query.head_pos - this.at.length, 0));
-          text = "" + start_str + content + " " + (source.slice(this.query['end_pos'] || 0));
+          text = "" + start_str + content + space + (source.slice(this.query['end_pos'] || 0));
           $inputor.val(text);
           $inputor.caret('pos', start_str.length + content.length + 1);
         } else if (range = this.get_range()) {
@@ -774,11 +781,11 @@
         return this.$el.is(":visible");
       };
 
-      View.prototype.choose = function() {
+      View.prototype.choose = function(space) {
         var $li, content;
         $li = this.$el.find(".cur");
         content = this.context.insert_content_for($li);
-        this.context.insert(this.context.callbacks("before_insert").call(this.context, content, $li), $li);
+        this.context.insert(this.context.callbacks("before_insert").call(this.context, content, $li), $li, space);
         this.context.trigger("inserted", [$li]);
         return this.hide();
       };
