@@ -24,7 +24,7 @@ $(function(){
         data: {},
         tpl:"<li data-value='${name}' data-select='${selected}'>${name}</li>",
         start_with_space: false,
-        limit: 10,
+        limit: 11,
         callbacks:
         {
            //just match everything baby :3
@@ -42,6 +42,8 @@ $(function(){
                log(query, data, search_key);
                var bnarr = megusta.suggest(query);
                var bndict = [];
+               bnarr.words = bnarr.words.slice(0,10);
+               bnarr.words.push(query);
                bnarr.words.forEach( function(a,i) {
                    bndict.push({id: i, name: a, selected: (i == bnarr.prevSelection)  });
                });
@@ -49,7 +51,8 @@ $(function(){
            },
            before_insert: function (value, li) {
                //save the selected value to user preferences;
-               megusta.commit(this.query.text, value);
+               if (this.query.text != value) //dont save if user selects english word
+                   megusta.commit(this.query.text, value);
                return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
