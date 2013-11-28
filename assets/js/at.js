@@ -60,6 +60,9 @@ $(function(){
                var bnarr = megusta.suggest(query);
                var bndict = [];
                bnarr.words = bnarr.words.slice(0,10);
+               if (megusta.candidate(query) == query) {
+                   bnarr.prevSelection = bnarr.words.length;
+               }
                bnarr.words.push(query);
                bnarr.words.forEach( function(a,i) {
                    bndict.push({id: i, name: a, selected: (i == bnarr.prevSelection)  });
