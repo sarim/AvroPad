@@ -97,11 +97,22 @@ $(function(){
     });
     
     var hammer = $("html").hammer();
-    hammer.on("swipeleft", function() {
-        toggleLang();
+    hammer.on("swipeleft swiperight", function() {
+        if (window.twoFingerTouch) toggleLang();
     });
-    hammer.on("swiperight", function() {
-        toggleLang();
+    hammer.on("touch", function(e){
+        //check if two touch event are present, which means two finger touch
+        if (e.gesture.touches['0'] && e.gesture.touches['1']) {
+            window.twoFingerTouch = true;
+        }
+    });
+    
+    hammer.on("release", function(e){
+        window.twoFingerTouch = false;
+    });
+
+    $(document).on("touchmove", function(e){
+        if (window.twoFingerTouch) e.preventDefault();
     });
     
     $("ul").hammer().on("touch", function(e) {
