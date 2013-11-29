@@ -573,7 +573,7 @@
 
       Controller.prototype.rect = function() {
         var c, scale_bottom;
-        if (!(c = this.$inputor.caret('offset', this.pos - 1))) {
+        if (!(c = this.$inputor.caret('offset'))) {
           return;
         }
         if (this.$inputor.attr('contentEditable') === 'true') {
