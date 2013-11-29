@@ -15,8 +15,9 @@ function toggleLang() {
         $('#chklang').prop('checked', true);
         $('#langflash').html("BN");
     }
-    if (checkInView('label'))
+    if (checkInView('label')) {
         $('#langflash').fadeIn(200).delay(300).fadeOut(300);
+    }
 }
 
 // element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified
@@ -27,7 +28,7 @@ function checkInView(elem,partial)
 
     var elemTop = $(elem).offset().top - container.offset().top;
     var elemBottom = elemTop + $(elem).height() / 2;
-
+    $('#langflash').css({top: contTop});
     return elemBottom < contTop ;
 }
 
