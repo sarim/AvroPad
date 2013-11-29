@@ -766,7 +766,7 @@
         $menu.on('mouseenter.atwho-view', 'li', function(e) {
           $menu.find('.cur').removeClass('cur');
           return $(e.currentTarget).addClass('cur');
-        }).on('click', function(e) {
+        }).on('customInsert', function(e) {
           _this.choose(" ");
           return e.preventDefault();
         });

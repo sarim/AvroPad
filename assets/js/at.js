@@ -116,10 +116,17 @@ $(function(){
         if (window.twoFingerTouch) e.preventDefault();
     });
     
-    $("ul").hammer().on("touch", function(e) {
+    var ulHammer = $("ul").hammer();
+    ulHammer.on("touch", function(e) {
         log("touch", e);
         $('.cur').removeClass('cur');
         $(e.target).addClass('cur');
+    });
+    
+    ulHammer.on("release", function(e) {
+        log("release");
+        e.preventDefault();
+        $(e.target).trigger("customInsert");
     });
 });
 
