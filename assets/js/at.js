@@ -125,8 +125,7 @@ $(function(){
     
     ulHammer.on("release", function(e) {
         log("release");
-        e.preventDefault();
-        $(e.target).trigger("customInsert");
+        $(e.target).trigger("customInsert",e);
     });
 });
 
