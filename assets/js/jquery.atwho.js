@@ -807,7 +807,7 @@
           top: rect.bottom
         };
         if ( (rect.left+10)*2 - $(window).scrollLeft() > $(window).width()) {
-          offset.left = offset.left + 50 - this.$el.width();
+          offset.left = offset.left + 20 - this.$el.width();
           if (offset.left < 5) offset.left = 5;
         }
         this.$el.offset(offset);
