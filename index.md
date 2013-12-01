@@ -13,10 +13,10 @@ layout: home
           <textarea id="inputor" class="inputor" placeholder="Write Here" disabled="disabled" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
         </div>
     </div>
-    <h2 id="loading"> Loading ... </h2>
-    {% include javascript.html %}
+    {% include loading.html %}
     {% include footer.html %}
 </div>
 <div id="langflash">
 	BN
 </div>
+{% include javascript.html %}

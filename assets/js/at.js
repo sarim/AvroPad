@@ -34,7 +34,7 @@ function checkInView(elem,partial)
 
 //setup all the awesomeness
 $(function(){
-    //remote loading..
+    //remove loading..
     $("#loading").remove();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({

@@ -1,0 +1,76 @@
+#fountainG{
+position:relative;
+width:240px;
+height:29px}
+
+.fountainG{
+position:absolute;
+top:0;
+background-color:white;
+width:20px;
+height:20px;
+animation-name:bounce_fountainG;
+animation-duration:1.3s;
+animation-iteration-count:infinite;
+animation-direction:linear;
+transform:scale(.3);
+border-radius:19px;
+}
+
+#fountainG_1{
+left:0;
+animation-delay:0.52s;
+}
+
+#fountainG_2{
+left:30px;
+animation-delay:0.65s;
+}
+
+#fountainG_3{
+left:60px;
+animation-delay:0.78s;
+}
+
+#fountainG_4{
+left:90px;
+animation-delay:0.91s;
+}
+
+#fountainG_5{
+left:120px;
+animation-delay:1.04s;
+}
+
+#fountainG_6{
+left:150px;
+animation-delay:1.17s;
+}
+
+#fountainG_7{
+left:180px;
+animation-delay:1.3s;
+}
+
+@keyframes bounce_fountainG{
+0%{
+transform:scale(1);
+background-color:gray;
+}
+
+100%{
+transform:scale(.3);
+background-color:white;
+}
+
+}
+
+.loadinline {
+    display:inline;
+    margin-right: 5px;
+}
+
+#loading {
+    margin: 0 auto;
+    width: 280px;
+}
