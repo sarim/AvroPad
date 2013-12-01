@@ -105,7 +105,11 @@
         } else if (document.selection) {
           this.getOldIEOffset();
         }
-        return Utils.adjustOffset(offset, this.$inputor);
+        if (offset) {
+          offset.top += $(window).scrollTop();
+          offset.left += $(window).scrollLeft();
+        }
+        return offset;
       };
 
       EditableCaret.prototype.range = function() {
@@ -200,13 +204,16 @@
 
         $inputor = this.$inputor;
         if (document.selection) {
-          return Utils.adjustOffset(this.getIEOffset(pos), $inputor);
+          offset = this.getIEOffset(pos);
+          offset.top += $(window).scrollTop() + $inputor.scrollTop();
+          offset.left += $(window).scrollLeft() + $inputor.scrollLeft();
+          return offset;
         } else {
           offset = $inputor.offset();
           position = this.getPosition(pos);
           return offset = {
-            left: offset.left + position.left,
-            top: offset.top + position.top,
+            left: offset.left + position.left - $inputor.scrollLeft(),
+            top: offset.top + position.top - $inputor.scrollTop(),
             height: position.height
           };
         }
@@ -301,8 +308,8 @@
         if (!offset) {
           return;
         }
-        offset.top += $(window).scrollTop() + $inputor.scrollTop();
-        offset.left += +$(window).scrollLeft() + $inputor.scrollLeft();
+        offset.top += $(window).scrollTop();
+        offset.left += $(window).scrollLeft();
         return offset;
       },
       contentEditable: function($inputor) {
