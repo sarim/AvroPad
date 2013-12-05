@@ -799,8 +799,14 @@
 
       View.prototype.reposition = function(rect) {
         var offset;
+        var $$ul = this.$el.find("ul");
+        $$ul.css({'max-height' : ''});
         if (rect.bottom + this.$el.height() - $(window).scrollTop() > $(window).height()) {
-          rect.bottom = rect.top - this.$el.height();
+          if (matchMedia("screen and (min-width:800px)").matches) {
+            $$ul.css({'max-height' : $(window).height() - $(window).scrollTop() - rect.bottom - 20 });
+          } else {
+            rect.bottom = rect.top - this.$el.height();
+          }
         }
         offset = {
           left: rect.left,

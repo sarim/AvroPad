@@ -30,7 +30,7 @@
 .atwho-view ul {
     list-style: none;
     padding: 0;
-    margin: auto
+    margin: auto;
 }
 .atwho-view ul li {
     display: inline;
@@ -52,7 +52,7 @@
         float: none;
         padding: 5px 10px;
     }
-    .atwho-view {
-        
+    .atwho-view ul {
+        overflow-y: auto;
     }
 }
