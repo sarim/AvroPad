@@ -19,4 +19,5 @@ layout: home
 <div id="langflash">
 	BN
 </div>
+{% include google_analytics.html %}
 {% include javascript.html %}
