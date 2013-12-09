@@ -91,7 +91,7 @@ $(function(){
     
     $(document).on("keydown", function (e){
         //charCode of dot is 46, but event keyCode is 190 for dot. Need to figure this out.
-        if (e.ctrlKey && 190 == e.keyCode) {
+        if (e.ctrlKey && [190,110].indexOf(e.keyCode) !== -1 ) {
             e.preventDefault();
             toggleLang();
         }
