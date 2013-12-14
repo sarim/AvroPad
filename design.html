@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			AvroIM - Revolutionary Writing Tool
+		</title>
+		<style type="text/css">
+body {
+		background: url('assets/img/bg.jpg') repeat;
+		}
+		.avrosprite {
+		background: url('assets/img/avrosprite.png');
+		}
+		.indicator-bare {
+		background-position: -10px -0px;
+		width: 100px;
+		height: 100px;
+		}
+		.indicator-glow {
+		background-position: -10px -110px;
+		width: 100px;
+		height: 100px;
+		}
+		.logo {
+		background-position: -0px -220px;
+		width: 99px;
+		height: 39px;
+		}
+		
+		body, html {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			font-family: sans-serif;
+		}
+		
+		.container {
+			height: 100%;
+		}
+		
+		#indicator div {
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		.leftbar {
+			width: 100px;
+		}
+		.leftbar .vason {
+			text-align: center;
+		}
+		#leftbar {
+			float: left;
+		}
+		#middle {
+			position: absolute;
+			display: inline-block;
+			left: 100px;
+			right: 280px;
+			height: 100%;
+			background: url('assets/img/fg.jpg') repeat;
+		}
+		#rightbar {
+			float: right;
+			width: 260px;
+		}		
+		#main {
+			height: 95%;
+			margin: 10px 30px 0 10px;
+		}
+		#logo {
+			float:right;
+			margin: 10px;
+		}
+		.bottomfloat {
+			position: absolute;
+			bottom: 10px;
+		}
+		.txtright {
+			right: 15px;
+		}
+		.txttop {
+			margin-top: 70px;
+		}
+		.share {
+			position:absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto 0 auto auto;
+			height: 60px;
+			width: 250px;
+		}
+		.inputor {
+			width: 100%;
+			height: 100%;
+			border: 0;
+			margin: 0;
+			padding: 10px 10px 0 10px;
+			background: transparent;
+			font-size: 16px;
+			z-index: 10;
+		}
+		.vason {
+			color: white;
+		}
+		</style>
+		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script>
+		var langbn = true;
+		function togglelang() {
+			if (langbn) {
+				$(".indicator-glow").fadeOut(100);
+				langbn = false;
+			} else {
+				$(".indicator-glow").fadeIn(100);
+				langbn = true;
+			}
+		}
+		$(function(){
+			$("#indicator").click(function(){
+				togglelang();
+			});
+			$("#inputor").focus();
+		});
+		</script>
+	</head>
+	<body>
+		<div class="container wrapper">
+			<div id="leftbar" class="leftbar">
+				<div id="indicator">
+					<div class="avrosprite indicator-bare"></div>
+					<div class="avrosprite indicator-glow"></div>
+				</div>
+				<div class="vason bottomfloat leftbar">
+					<small>to switch mode</small>
+					<span>Ctrl + . (dot)</span>
+				</div>
+			</div>
+			<div id="middle">
+			    <div id="main">
+					<textarea id="inputor" class="inputor" placeholder="Write Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+			    </div>
+			</div>
+			<div id="rightbar">
+				<div id="logo">
+					<div class="avrosprite logo"></div>
+				</div>
+				<div class="vason txtright txttop">
+					This project is an attempt to port Avro Phonetic to web
+				</div>
+				<div class="vason share">
+					vason vason  <br>
+					share button vason <br>
+					vason vason
+				</div>
+				<div class="vason bottomfloat txtright">
+					(c) OmicronLab 2013
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
