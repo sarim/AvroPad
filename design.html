@@ -105,8 +105,17 @@ body {
 		.vason {
 			color: white;
 		}
+		.coordinate-box {
+			border-right: 2px dashed gray;
+			border-bottom: 2px dashed gray;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 999;
+		}
 		</style>
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.caret.js"></script>
 		<script>
 		var langbn = true;
 		function togglelang() {
@@ -122,7 +131,13 @@ body {
 			$("#indicator").click(function(){
 				togglelang();
 			});
-			$("#inputor").focus();
+			
+			$("#inputor").on('focus keyup mouseup', function(){
+				var offset = $(this).caret('offset');
+				if(offset) {
+					$('.coordinate-box').css({'width': offset.left, 'height': offset.top});
+				}
+			}).focus();
 		});
 		</script>
 	</head>
@@ -159,6 +174,7 @@ body {
 					(c) OmicronLab 2013
 				</div>
 			</div>
+			<div class="coordinate-box"></div>
 		</div>
 	</body>
 </html>
