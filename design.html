@@ -113,6 +113,9 @@ body {
 			left: 0;
 			z-index: 999;
 		}
+        div#_atssh {
+                display: none;
+        }
 		</style>
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.caret.js"></script>
@@ -138,6 +141,10 @@ body {
 					$('.coordinate-box').css({'width': offset.left, 'height': offset.top});
 				}
 			}).focus();
+			var script   = document.createElement("script");
+			script.type  = "text/javascript";
+			script.src   = "http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52a5d5c421e9f2ae";
+			document.body.appendChild(script);
 		});
 		</script>
 	</head>
@@ -166,9 +173,14 @@ body {
 					This project is an attempt to port Avro Phonetic to web
 				</div>
 				<div class="vason share">
-					vason vason  <br>
-					share button vason <br>
-					vason vason
+					Share the Love <br>
+					<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+						<a class="addthis_button_facebook"></a>
+						<a class="addthis_button_twitter"></a>
+						<a class="addthis_button_google_plusone_share"></a>
+						<a class="addthis_button_linkedin"></a>
+						<a class="addthis_button_email"></a>
+					</div>
 				</div>
 				<div class="vason bottomfloat txtright">
 					(c) OmicronLab 2013
