@@ -4,119 +4,11 @@
 		<title>
 			AvroIM - Revolutionary Writing Tool
 		</title>
-		<style type="text/css">
-body {
-		background: url('assets/img/bg.jpg') repeat;
-		}
-		.avrosprite {
-		background: url('assets/img/avrosprite.png');
-		}
-		.indicator-bare {
-		background-position: -10px -0px;
-		width: 100px;
-		height: 100px;
-		}
-		.indicator-glow {
-		background-position: -10px -110px;
-		width: 100px;
-		height: 100px;
-		}
-		.logo {
-		background-position: -0px -220px;
-		width: 99px;
-		height: 39px;
-		}
-		
-		body, html {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			font-family: sans-serif;
-		}
-		
-		.container {
-			height: 100%;
-		}
-		
-		#indicator div {
-			position: absolute;
-			top:0;
-			left:0;
-		}
-		.leftbar {
-			width: 100px;
-		}
-		.leftbar .vason {
-			text-align: center;
-		}
-		#leftbar {
-			float: left;
-		}
-		#middle {
-			position: absolute;
-			display: inline-block;
-			left: 100px;
-			right: 280px;
-			height: 100%;
-			background: url('assets/img/fg.jpg') repeat;
-		}
-		#rightbar {
-			float: right;
-			width: 260px;
-		}		
-		#main {
-			height: 95%;
-			margin: 10px 30px 0 10px;
-		}
-		#logo {
-			float:right;
-			margin: 10px;
-		}
-		.bottomfloat {
-			position: absolute;
-			bottom: 10px;
-		}
-		.txtright {
-			right: 15px;
-		}
-		.txttop {
-			margin-top: 70px;
-		}
-		.share {
-			position:absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto 0 auto auto;
-			height: 60px;
-			width: 250px;
-		}
-		.inputor {
-			width: 100%;
-			height: 100%;
-			border: 0;
-			margin: 0;
-			padding: 10px 10px 0 10px;
-			background: transparent;
-			font-size: 16px;
-			z-index: 10;
-		}
-		.vason {
-			color: white;
-		}
-		.coordinate-box {
-			border-right: 2px dashed gray;
-			border-bottom: 2px dashed gray;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 999;
-		}
-        div#_atssh {
-                display: none;
-        }
-		</style>
+		<meta name="viewport" content="target-densitydpi=device-dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="base.css" type="text/css">
+		<link rel="stylesheet" href="desktop.css" type="text/css">
+		<link rel="stylesheet" href="mobile.css" type="text/css">
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/jquery.caret.js"></script>
 		<script>
@@ -155,6 +47,9 @@ body {
 					<div class="avrosprite indicator-bare"></div>
 					<div class="avrosprite indicator-glow"></div>
 				</div>
+				<div class="logoleft">
+					<div class="avrosprite logo"></div>
+				</div>
 				<div class="vason bottomfloat leftbar">
 					<small>to switch mode</small>
 					<span>Ctrl + . (dot)</span>
@@ -166,7 +61,7 @@ body {
 			    </div>
 			</div>
 			<div id="rightbar">
-				<div id="logo">
+				<div class="logoright">
 					<div class="avrosprite logo"></div>
 				</div>
 				<div class="vason txtright txttop">

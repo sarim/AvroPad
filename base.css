@@ -1,0 +1,57 @@
+body {
+    background: url('assets/img/bg.jpg') repeat;
+}
+.avrosprite {
+    background: url('assets/img/avrosprite.png');
+}
+.indicator-bare {
+    background-position: -10px -0px;
+    width: 100px;
+    height: 100px;
+}
+.indicator-glow {
+    background-position: -10px -110px;
+    width: 100px;
+    height: 100px;
+}
+.logo {
+    background-position: -0px -220px;
+    width: 99px;
+    height: 39px;
+}
+		
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.inputor {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 10px 10px 0 10px;
+    background: transparent;
+    font-size: 16px;
+    z-index: 10;
+}
+.vason {
+    color: white;
+}
+.coordinate-box {
+    border-right: 2px dashed gray;
+    border-bottom: 2px dashed gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+div#_atssh {
+    display: none;
+}
+
+.bottomfloat {
+    position: absolute;
+    bottom: 10px;
+}

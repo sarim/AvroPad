@@ -1,0 +1,56 @@
+@media screen and (max-width:800px) {
+
+body {
+    height: auto !important;
+}
+		
+#indicator div {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.leftbar {
+    width: 100%;
+}
+.leftbar .vason {
+    text-align: center;
+}
+#leftbar {
+    float: left;
+}
+#middle {
+    margin-top: 100px;
+    height: 400px;
+    background: url('assets/img/fg.jpg') repeat;
+}
+#rightbar {
+    width: 100%;
+}
+
+#main {
+    height: 95%;
+    margin: 10px 30px 0 10px;
+}
+.logoright {
+    display: none;
+}
+.logoleft {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+}
+.share {
+    height: 60px;
+    margin: 10px auto;
+    width: 180px;
+    text-align: center;
+}
+.txttop {
+    margin-top: 10px;
+    text-align: center;
+}
+.vason.bottomfloat.leftbar,.vason.bottomfloat.txtright {
+    display: none;
+}
+
+}
