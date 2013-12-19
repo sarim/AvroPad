@@ -89,8 +89,7 @@ body {
     margin-right:55px;
     float: right;
 }
-/*#bottomcontainer {
-    height: 400px;
-    overflow-y : auto;
-}*/
+.inputor {
+    overflow-y: hidden;
+}
 }

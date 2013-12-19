@@ -16,8 +16,8 @@ body, html {
     background: transparent;
     font-size: 16px;
     z-index: 10;
-    overflow-y: hidden;
     outline: none;
+    resize: none;
 }
 .vason {
     color: white;
