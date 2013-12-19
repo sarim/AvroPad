@@ -29,6 +29,31 @@ layout: home
 		<div class="vason txtright txttop">
 			This project is an attempt to port Avro Phonetic to web
 		</div>
+		<div class="draft vason">
+			<span>Autosaved Drafts</span>
+			<ul>
+				<li>
+					<span>Draft 1</span>
+					<small>10 days ago</small>
+				</li>
+				<li>
+					<span>Draft 2</span>
+					<small>30 days ago</small>
+				</li>
+				<li>
+					<span>Draft 3</span>
+					<small>3 months ago</small>
+				</li>
+				<li>
+					<span>Draft 4</span>
+					<small>20 minutes ago</small>
+				</li>
+				<li>
+					<span>Draft 5</span>
+					<small>6 hours ago</small>
+				</li>
+			</ul>
+		</div>
 		<div class="vason share">
 			Share the Love <br>
 			<div class="sharebuttons">

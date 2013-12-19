@@ -81,4 +81,23 @@
 #mobilehint {
     display: none;
 }
+.draft {
+    position: absolute;
+    top:0;
+    bottom:0;
+    height:280px;
+    margin: auto;
+}
+.draft ul li {
+    list-style: none;
+    padding: 15px 0;
+}
+.draft ul span {
+    display: block;
+    
+}
+.draft ul small {
+    font-size: 12px;
+    float: right;
+}
 }
