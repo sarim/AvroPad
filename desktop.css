@@ -3,6 +3,25 @@
 .container {
     height: 100%;
 }
+
+.avrosprite {
+    background: url('assets/img/avrosprite.png');
+}
+.indicator-bare {
+    background-position: -10px -0px;
+    width: 100px;
+    height: 100px;
+}
+.indicator-glow {
+    background-position: -10px -110px;
+    width: 100px;
+    height: 100px;
+}
+.logo {
+    background-position: -0px -220px;
+    width: 99px;
+    height: 39px;
+}
 		
 #indicator div {
     position: absolute;
@@ -56,5 +75,8 @@
 }
 .txttop {
     margin-top: 70px;
+}
+#mobilehint {
+    display: none;
 }
 }
