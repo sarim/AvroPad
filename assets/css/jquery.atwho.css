@@ -4,7 +4,7 @@
     left: 0;
     display: none;
     margin-top: 18px;
-    background: #fff;
+    background: black;
     border: 1px solid #DDD;
     border-radius: 3px;
     box-shadow: 0 0 5px rgba(0,0,0,.1);
@@ -14,8 +14,8 @@
 }
 
 .atwho-view .cur {
-    background: #36F;
-    color: #fff
+    background: rgb(255,167,41);
+    color: black;
 }
 .atwho-view .cur small {
     color: #fff
@@ -31,11 +31,14 @@
     list-style: none;
     padding: 0;
     margin: auto;
+    background: black;
 }
 .atwho-view ul li {
+    background: black;
+    color: white;
     display: inline;
     padding: 7px 12px;
-    border-bottom: 1px solid #DDD;
+    border-bottom: none;
     cursor: pointer;
     float:left;
     font-size: 16px;
@@ -51,6 +54,7 @@
         display: block;
         float: none;
         padding: 5px 10px;
+        border-bottom: 1px solid #DDD;
     }
     .atwho-view ul {
         overflow-y: auto;
