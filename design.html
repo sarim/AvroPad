@@ -29,7 +29,8 @@
 			$(window).on('scroll touchmove', function(){
 				$('#indicator').offset({top: $(window).scrollTop() , left:0});
 			});
-			$("#indicator").click(function(){
+			$("#indicator").on("click touchstart", function(e){
+				e.preventDefault();
 				togglelang();
 			});
 			
