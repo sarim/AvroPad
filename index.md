@@ -31,12 +31,10 @@ layout: home
 		</div>
 		<div class="vason share">
 			Share the Love <br>
-			<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-				<a class="addthis_button_facebook"></a>
-				<a class="addthis_button_twitter"></a>
-				<a class="addthis_button_google_plusone_share"></a>
-				<a class="addthis_button_linkedin"></a>
-				<a class="addthis_button_email"></a>
+			<div class="sharebuttons">
+				<a class="facebook">&lt; F &gt;</a>
+				<a class="twitter">&lt; T &gt;</a>
+				<a class="gplus">&lt; G &gt;</a>
 			</div>
 		</div>
 		<div class="vason bottomfloat txtright">
