@@ -5,7 +5,7 @@ if (typeof window.log == "undefined") {
 
 //init the avro
 var megusta = new AvroPhonetic(lSLoader, lSSaver);
-
+var midHeight = 0;
 //toggle the language button
 var langbn = true;
 function toggleLang() {
@@ -31,8 +31,10 @@ function toggleLang() {
 function isMobile() {
 	if (matchMedia("screen and (min-width:800px)").matches)
 		return false;
-	else
-		return true;
+	else {
+        midHeight = $(window).height() - $("#rightbar").height() - 85 - 20;
+	    return true;
+	}		
 }
 
 // element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified
@@ -56,6 +58,10 @@ $(function(){
 		toggleLang();
 		$("#inputor").focus();
 	});
+    
+    if (isMobile()) {
+        $("#middle").css({"min-height": (midHeight + 20) + "px"});
+    }
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
@@ -109,8 +115,8 @@ $(function(){
         }
     }).on('keyup focus',function(e){
 		if (isMobile()) {
-			$(this).height( 100 );
-		    $(this).height( 180 > this.scrollHeight ? 180 : this.scrollHeight );
+			$(this).height( midHeight );
+		    $(this).height( midHeight > this.scrollHeight ? midHeight : this.scrollHeight );
 		}
     }).focus();
     

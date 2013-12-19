@@ -50,7 +50,7 @@ body {
 }
 #middle {
     margin-top: 50px;
-    min-height: 200px;
+    min-height: 300px;
     background: url('../img/fg.jpg') repeat;
 }
 #rightbar {
