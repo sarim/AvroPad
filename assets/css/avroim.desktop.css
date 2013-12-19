@@ -55,23 +55,25 @@
 }
 .logoright {
     float: right;
-    margin: 10px;
+    margin: 14px;
 }
 .logoleft {
     display: none;
 }
 .share {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    text-align: right;
+    bottom: 20px;
+    right: 15px;
     margin: auto 0 auto auto;
     height: 60px;
-    width: 250px;
+    width: 150px;
 }
 .txtright {
+    position: absolute;
+    text-align: right;
     right: 15px;
+    max-width: 200px;
 }
 .txttop {
     margin-top: 70px;
