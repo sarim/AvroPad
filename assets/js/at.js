@@ -9,6 +9,11 @@ var megusta = new AvroPhonetic(lSLoader, lSSaver);
 //toggle the language button
 var langbn = true;
 function toggleLang() {
+    var cV = checkInView('#indicator');
+    if (cV) {
+        $('#indicator').offset({left:0,top:$('body').scrollTop()}).hide();
+        $('#indicator').fadeIn(200);
+    }
 	if (langbn) {
 		$(".indicator-glow").fadeOut(100);
 		langbn = false;
@@ -16,9 +21,11 @@ function toggleLang() {
 		$(".indicator-glow").fadeIn(100);
 		langbn = true;
 	}
-    // if (checkInView('label')) {
-    //     $('#langflash').fadeIn(200).delay(300).fadeOut(300);
-    // }
+    if (cV) {
+        $('#indicator').delay(300).fadeOut(300, function(){
+            $('#indicator').show().offset({left:0,top:0});
+        });
+    }
 }
 
 function isMobile() {
@@ -35,8 +42,7 @@ function checkInView(elem,partial)
     var contTop = container.scrollTop();
 
     var elemTop = $(elem).offset().top - container.offset().top;
-    var elemBottom = elemTop + $(elem).height() / 2;
-    $('#langflash').css({top: contTop});
+    var elemBottom = elemTop + $(elem).height() * 2;
     return elemBottom < contTop ;
 }
 
@@ -101,12 +107,12 @@ $(function(){
                return ul.find("li[data-select=true]").addClass("cur");
            }
         }
-    }) /*.on('keyup',function(e){
+    }).on('keyup focus',function(e){
 		if (isMobile()) {
 			$(this).height( 100 );
 		    $(this).height( 180 > this.scrollHeight ? 180 : this.scrollHeight );
 		}
-    })*/.focus();
+    }).focus();
     
     $(document).on("keydown", function (e){
         //charCode of dot is 46, but event keyCode is 190 for dot. Need to figure this out.
