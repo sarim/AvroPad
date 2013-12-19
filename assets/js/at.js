@@ -7,17 +7,25 @@ if (typeof window.log == "undefined") {
 var megusta = new AvroPhonetic(lSLoader, lSSaver);
 
 //toggle the language button
+var langbn = true;
 function toggleLang() {
-    if ($('#chklang').prop('checked')) {
-        $('#chklang').prop('checked', false);
-        $('#langflash').html("EN");
-    } else {
-        $('#chklang').prop('checked', true);
-        $('#langflash').html("BN");
-    }
-    if (checkInView('label')) {
-        $('#langflash').fadeIn(200).delay(300).fadeOut(300);
-    }
+	if (langbn) {
+		$(".indicator-glow").fadeOut(100);
+		langbn = false;
+	} else {
+		$(".indicator-glow").fadeIn(100);
+		langbn = true;
+	}
+    // if (checkInView('label')) {
+    //     $('#langflash').fadeIn(200).delay(300).fadeOut(300);
+    // }
+}
+
+function isMobile() {
+	if (matchMedia("screen and (min-width:800px)").matches)
+		return false;
+	else
+		return true;
 }
 
 // element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified
@@ -37,6 +45,12 @@ $(function(){
     //remove loading..
     $("#loading").remove();
     
+	$("#indicator").on("click touchstart", function(e){
+		e.preventDefault();
+		toggleLang();
+		$("#inputor").focus();
+	});
+    
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
         data: {},
@@ -47,7 +61,7 @@ $(function(){
         {
            //just match everything baby :3
            matcher: function (flag, subtext) {
-               if (! $('#chklang').prop('checked')) return null; // always return null when user selects english
+               if (! langbn) return null; // always return null when user selects english
                res = subtext.match(/\s?([^\s]+)$/);
                log(subtext, res);
                if (res == null) return null;
@@ -87,7 +101,12 @@ $(function(){
                return ul.find("li[data-select=true]").addClass("cur");
            }
         }
-    }).focus();
+    }) /*.on('keyup',function(e){
+		if (isMobile()) {
+			$(this).height( 100 );
+		    $(this).height( 180 > this.scrollHeight ? 180 : this.scrollHeight );
+		}
+    })*/.focus();
     
     $(document).on("keydown", function (e){
         //charCode of dot is 46, but event keyCode is 190 for dot. Need to figure this out.

@@ -1,5 +1,5 @@
 body {
-    background: url('assets/img/bg.jpg') repeat;
+    background: url('../img/bg.jpg') repeat;
 }
 body, html {
     min-height: 100%;
@@ -17,18 +17,12 @@ body, html {
     font-size: 16px;
     z-index: 10;
     overflow-y: hidden;
+    outline: none;
 }
 .vason {
     color: white;
 }
-.coordinate-box {
-    border-right: 2px dashed gray;
-    border-bottom: 2px dashed gray;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 999;
-}
+
 div#_atssh {
     display: none;
 }
