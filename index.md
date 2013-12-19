@@ -31,6 +31,11 @@ layout: home
 		</div>
 		<div class="draft vason">
 			<span>Autosaved Drafts</span>
+			<span>[+]</span>
+			<div class="libutton">
+				<span>[E]</span>
+				<span>[-]</span>
+			</div>
 			<ul>
 				<li>
 					<span>Draft 1</span>

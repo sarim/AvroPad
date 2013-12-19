@@ -86,11 +86,18 @@
     top:0;
     bottom:0;
     height:280px;
-    margin: auto;
+    margin: auto auto auto 30px;
+    width: 200px;
+}
+.draft ul {
+    list-style-type: none;
+    padding: 0;
 }
 .draft ul li {
-    list-style: none;
     padding: 15px 0;
+}
+.draft ul li:hover {
+    background-color: rgba(20,20,20,0.4);
 }
 .draft ul span {
     display: block;
@@ -99,5 +106,10 @@
 .draft ul small {
     font-size: 12px;
     float: right;
+}
+.libutton {
+    position: absolute;
+    display: none;
+    color: pink;
 }
 }

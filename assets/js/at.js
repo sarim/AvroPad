@@ -158,6 +158,19 @@ $(function(){
         log("release");
         $(e.target).trigger("customInsert",e);
     });
+    $(".draft ul").hover(function(){
+        $(".libutton").show();
+    },function(){
+        $(".libutton").hide();
+    });
+
+    $(".draft ul li").hover(function(){
+        $(".libutton").css({top: ($(this).offset().top - 315) +"px" , right: "10px" });
+    },function(){
+        
+    });
+    
+    
 });
 
 $(window).load(function() {
