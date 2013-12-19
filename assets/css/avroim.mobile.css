@@ -90,6 +90,7 @@ body {
     float: right;
 }
 .inputor {
+    margin-top: 10px;
     overflow-y: hidden;
 }
 }
