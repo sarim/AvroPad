@@ -99,7 +99,7 @@
 .draft ul li:hover {
     background-color: rgba(20,20,20,0.4);
 }
-.draft ul span {
+.draft ul .title {
     display: block;
     
 }
@@ -109,7 +109,13 @@
 }
 .libutton {
     position: absolute;
+    right: 10px;
+    top: 5px;
     display: none;
     color: pink;
+}
+.libutton span {
+    background-color: black;
+    padding: 4px;
 }
 }

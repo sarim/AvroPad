@@ -159,15 +159,21 @@ $(function(){
         $(e.target).trigger("customInsert",e);
     });
     $(".draft ul").hover(function(){
-        $(".libutton").show();
+        
     },function(){
         $(".libutton").hide();
     });
 
     $(".draft ul li").hover(function(){
-        $(".libutton").css({top: ($(this).offset().top - 315) +"px" , right: "10px" });
+        $(".libutton").hide();
+        $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
     },function(){
         
+    });
+    
+    $(".libutton span").click(function(){
+        $(".libutton").hide();
+        $(this).parent().parent().find(".title").attr("contenteditable", 'true').focus();
     });
     
     

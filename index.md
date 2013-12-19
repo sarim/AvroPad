@@ -32,30 +32,46 @@ layout: home
 		<div class="draft vason">
 			<span>Autosaved Drafts</span>
 			<span>[+]</span>
-			<div class="libutton">
-				<span>[E]</span>
-				<span>[-]</span>
-			</div>
 			<ul>
 				<li>
-					<span>Draft 1</span>
+					<span class="title">Draft 1</span>
 					<small>10 days ago</small>
+					<div class="libutton">
+						<span>[E]</span>
+						<span>[-]</span>
+					</div>
 				</li>
 				<li>
-					<span>Draft 2</span>
+					<span class="title">Draft 2</span>
 					<small>30 days ago</small>
+					<div class="libutton">
+						<span>[E]</span>
+						<span>[-]</span>
+					</div>
 				</li>
 				<li>
-					<span>Draft 3</span>
+					<span class="title">Draft 3</span>
 					<small>3 months ago</small>
+					<div class="libutton">
+						<span>[E]</span>
+						<span>[-]</span>
+					</div>
 				</li>
 				<li>
-					<span>Draft 4</span>
+					<span class="title">Draft 4</span>
 					<small>20 minutes ago</small>
+					<div class="libutton">
+						<span>[E]</span>
+						<span>[-]</span>
+					</div>
 				</li>
 				<li>
-					<span>Draft 5</span>
+					<span class="title">Draft 5</span>
 					<small>6 hours ago</small>
+					<div class="libutton">
+						<span>[E]</span>
+						<span>[-]</span>
+					</div>
 				</li>
 			</ul>
 		</div>
