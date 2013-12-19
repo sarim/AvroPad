@@ -23,23 +23,31 @@
 				$(".indicator-glow").fadeIn(100);
 				langbn = true;
 			}
-			$("#inputor").focus();
 		}
+		
+		function isMobile() {
+			if (matchMedia("screen and (min-width:800px)").matches)
+				return false;
+			else
+				return true;
+		}
+				
 		$(function(){
-			$(window).on('scroll touchmove', function(){
-				$('#indicator').offset({top: $(window).scrollTop() , left:0});
-			});
 			$("#indicator").on("click touchstart", function(e){
 				e.preventDefault();
 				togglelang();
+				$("#inputor").focus();
 			});
 			
 			$("#inputor").on('focus keyup mouseup', function(){
 				
-				var posy = $("#bottomcontainer").scrollTop();
-				$(this).height( 100 );
-			    $(this).height( 180 > this.scrollHeight ? 180 : this.scrollHeight );
-				$("#bottomcontainer").scrollTop(posy);
+				if (isMobile()) {
+					var posy = $("#bottomcontainer").scrollTop();
+					$(this).height( 100 );
+				    $(this).height( 180 > this.scrollHeight ? 180 : this.scrollHeight );
+					$("#bottomcontainer").scrollTop(posy);
+				}
+				
 				var offset = $(this).caret('offset');
 				if(offset) {
 					$('.coordinate-box').css({'width': offset.left, 'height': offset.top});
@@ -49,16 +57,6 @@
 			script.type  = "text/javascript";
 			script.src   = "http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-52a5d5c421e9f2ae";
 			document.body.appendChild(script);
-			
-			// if (1 || "Todo: Detect mobile") {
-			// 	var scon = $("<div>", {id: "bottomcontainer"});
-			// 	scon.appendTo(".container");
-			// 	$("#middle,#rightbar").appendTo(scon);
-			// 	
-			// 	document.body.ontouchmove = function(event){
-			// 	    event.preventDefault();
-			// 	}
-			// }
 		});
 		</script>
 	</head>
@@ -74,8 +72,8 @@
 					<div class="avrosprite logo"></div>
 				</div>
 				<div class="vason bottomfloat leftbar">
+					<span>Ctrl + . (dot)</span><br>
 					<small>to switch mode</small>
-					<span>Ctrl + . (dot)</span>
 				</div>
 			</div>
 			<div id="middle">
