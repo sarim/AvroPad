@@ -121,6 +121,7 @@ function setupDraftEvent() {
         $(this).removeAttr("contenteditable");
         var curHash = $(this).parent().attr('data-key');
         draftData.data[curHash].updateTime($(this).parent().find("time")).title = this.textContent;
+        saveDraft();
     });
     $("div.draft").on('keydown', "span.title", function(e){
         if (e.keyCode == 13 || e.charCode == 13) {
@@ -139,8 +140,8 @@ function insertDraft() {
     newdraft.updateTime = function(timeElem) {
         newdraft.time = new Date().toISOString();
         if (timeElem) {
-            $("<time>", {class: "timeago"}).attr('datetime', newdraft.time).insertAfter(timeElem).timeago();
-            timeElem.remove();
+            timeElem.attr('datetime', newdraft.time);
+            timeElem.timeago('updateFromDOM');
         }
         return newdraft;
     }
@@ -153,7 +154,18 @@ function insertDraft() {
 
 function loadDrafts() {
     if (localStorage.AvroDrafts) {
-        return JSON.parse(localStorage.AvroDrafts);
+        var d = JSON.parse(localStorage.AvroDrafts);
+        for (ix in d.data) {
+            d.data[ix].updateTime = function(timeElem) {
+                d.data[ix].time = new Date().toISOString();
+                if (timeElem) {
+                    timeElem.attr('datetime', d.data[ix].time);
+                    timeElem.timeago('updateFromDOM');
+                }
+                return newdraft;
+            }
+        }
+        return d;
     } else {
         return false;
     }
