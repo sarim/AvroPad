@@ -447,7 +447,9 @@
         $$ul.css({'max-height' : ''});
         if (rect.bottom + this.$el.height() - $(window).scrollTop() > $(window).height()) {
           if (matchMedia("screen and (min-width:800px)").matches) {
-            $$ul.css({'max-height' : $(window).height() - $(window).scrollTop() - rect.bottom - 20 });
+            var mH = $(window).height() - $(window).scrollTop() - rect.bottom - 20;
+            if (mH > 200 ) $$ul.css({'max-height' : mH });
+            else rect.bottom = rect.top - this.$el.height();
           } else {
             rect.bottom = rect.top - this.$el.height();
           }
