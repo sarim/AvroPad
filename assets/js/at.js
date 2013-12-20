@@ -176,7 +176,7 @@ function loadDrafts() {
                     timeElem.attr('datetime', d.data[ix].time);
                     timeElem.timeago('updateFromDOM');
                 }
-                return newdraft;
+                return d.data[ix];
             }
         }
         return d;
