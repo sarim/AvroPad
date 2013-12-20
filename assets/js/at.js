@@ -37,6 +37,11 @@ function isMobile() {
 	}		
 }
 
+// from http://stackoverflow.com/a/15710692/726122
+String.prototype.hash = function(){
+  return this.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
+}
+
 // element isVisible. taken from http://stackoverflow.com/a/16309126/726122 but modified
 function checkInView(elem,partial)
 {
@@ -48,6 +53,71 @@ function checkInView(elem,partial)
     return elemBottom < contTop ;
 }
 
+function createDraft(draftObj, key) {
+    $li = $("<li>").attr('data-key', key);
+    $title = $("<span>", {class: "title", html: draftObj.title });
+    $small = $("<small>");
+    $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
+    
+    $button = $("<div>", {class: "libutton"});
+    $editbtn = $("<span>", {class: "editbtn", html: "[E]"}).appendTo($button);
+    $delbtn = $("<span>", {class: "delbtn", html: "[-]"}).appendTo($button);
+    
+    $title.appendTo($li);
+    $small.appendTo($li);
+    $button.appendTo($li);
+    $li.appendTo(".draft ul");
+    
+    $timeago.timeago();
+}
+
+function setupDraftEvent() {
+    $(".draft ul").hover(function(){
+        
+    },function(){
+        $(".libutton").hide();
+    });
+
+    $(".draft ul li").hover(function(){
+        $(".libutton").hide();
+        $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
+    },function(){
+        
+    });
+    
+    $(".libutton span.editbtn").click(function(){
+        $(".libutton").hide();
+        $(this).parent().parent().find(".title").attr("contenteditable", 'true').focus();
+    });
+    
+    $(".libutton span.delbtn").click(function(){
+        $(".libutton").hide();
+        $(this).parent().parent().remove();
+    });
+    
+    $("span.title").blur(function(e){
+        log("Save Title: " + this.textContent);
+    }).on('keydown',function(e){
+        if (e.keyCode == 13 || e.charCode == 13) {
+            e.preventDefault();
+            $(this).blur();
+        }
+    });
+}
+
+function createDummyDrafts() {
+    var tmpdrafts = {};
+    [
+    {title: "Draft 1", time: "2011-12-17T09:24:17Z" },
+    {title: "Draft 2", time: "2013-12-17T09:24:17Z" },
+    {title: "Draft 3", time: "2013-11-17T09:24:17Z" },
+    {title: "Draft 4", time: "2013-12-20T09:24:17Z" },
+    {title: "Draft 5", time: "2013-12-20T12:14:17Z" },
+    ].forEach(function(i){
+        tmpdrafts[i.time.hash()] = i;
+    });
+    return tmpdrafts;
+}
 //setup all the awesomeness
 $(function(){
     //remove loading..
@@ -62,6 +132,12 @@ $(function(){
     if (isMobile()) {
         $("#middle").css({"min-height": (midHeight + 20) + "px"});
     }
+    
+    $.each(createDummyDrafts(), function(key, val){
+        createDraft(val, key);
+    });
+    
+    setupDraftEvent();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
@@ -158,24 +234,6 @@ $(function(){
         log("release");
         $(e.target).trigger("customInsert",e);
     });
-    $(".draft ul").hover(function(){
-        
-    },function(){
-        $(".libutton").hide();
-    });
-
-    $(".draft ul li").hover(function(){
-        $(".libutton").hide();
-        $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
-    },function(){
-        
-    });
-    
-    $(".libutton span").click(function(){
-        $(".libutton").hide();
-        $(this).parent().parent().find(".title").attr("contenteditable", 'true').focus();
-    });
-    
     
 });
 
