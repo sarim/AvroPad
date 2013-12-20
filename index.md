@@ -31,7 +31,8 @@ layout: home
 		</div>
 		<div class="draft vason">
 			<span>Autosaved Drafts</span>
-			<span>[+]</span>
+			<span id="insertDraft" class="btn">[+]</span>
+			<span id="saveDraft" class="btn">[S]</span>
 			<ul>
 			</ul>
 		</div>

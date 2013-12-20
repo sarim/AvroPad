@@ -118,4 +118,7 @@
     background-color: black;
     padding: 4px;
 }
+.btn {
+cursor: pointer;
+}
 }

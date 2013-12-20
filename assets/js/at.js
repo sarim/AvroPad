@@ -53,51 +53,60 @@ function checkInView(elem,partial)
     return elemBottom < contTop ;
 }
 
-function createDraft(draftObj, key) {
+function createDraft(draftObj, key, prepend) {
     $li = $("<li>").attr('data-key', key);
     $title = $("<span>", {class: "title", html: draftObj.title });
     $small = $("<small>");
     $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
     
     $button = $("<div>", {class: "libutton"});
-    $editbtn = $("<span>", {class: "editbtn", html: "[E]"}).appendTo($button);
-    $delbtn = $("<span>", {class: "delbtn", html: "[-]"}).appendTo($button);
+    $editbtn = $("<span>", {class: "btn editbtn", html: "[E]"}).appendTo($button);
+    $delbtn = $("<span>", {class: "btn delbtn", html: "[-]"}).appendTo($button);
     
     $title.appendTo($li);
     $small.appendTo($li);
     $button.appendTo($li);
-    $li.appendTo(".draft ul");
+    prepend ? $li.prependTo(".draft ul") : $li.appendTo(".draft ul");
     
     $timeago.timeago();
 }
 
 function setupDraftEvent() {
-    $(".draft ul").hover(function(){
-        
-    },function(){
+    //these are direct events
+    $("#insertDraft").click(function(){
+        $('#inputor').attr("data-key",insertDraft());
+    });
+    $("saveDraft").click(function(){
+        saveDraft();
+    })
+    //all these are delegated events
+    $("div.draft").on('mouseleave', "ul", function(){
         $(".libutton").hide();
     });
 
-    $(".draft ul li").hover(function(){
+    $("div.draft").on('mouseenter', "li", function(){
+        log("li mouseenter");
         $(".libutton").hide();
         $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
-    },function(){
-        
     });
     
-    $(".libutton span.editbtn").click(function(){
+    $("div.draft").on('click', "span.editbtn", function(){
         $(".libutton").hide();
         $(this).parent().parent().find(".title").attr("contenteditable", 'true').focus();
     });
     
-    $(".libutton span.delbtn").click(function(){
+    $("div.draft").on('click', "span.delbtn", function(){
         $(".libutton").hide();
         $(this).parent().parent().remove();
     });
     
-    $("span.title").blur(function(e){
+    $("div.draft").on('blur', "span.title", function(e){
         log("Save Title: " + this.textContent);
-    }).on('keydown',function(e){
+        $(this).removeAttr("contenteditable");
+        var curHash = $(this).parent().attr('data-key');
+        draftData.data[curHash].updateTime($(this).parent().find("time")).title = this.textContent;
+    });
+    $("div.draft").on('keydown', "span.title", function(e){
         if (e.keyCode == 13 || e.charCode == 13) {
             e.preventDefault();
             $(this).blur();
@@ -105,19 +114,45 @@ function setupDraftEvent() {
     });
 }
 
-function createDummyDrafts() {
-    var tmpdrafts = {};
-    [
-    {title: "Draft 1", time: "2011-12-17T09:24:17Z" },
-    {title: "Draft 2", time: "2013-12-17T09:24:17Z" },
-    {title: "Draft 3", time: "2013-11-17T09:24:17Z" },
-    {title: "Draft 4", time: "2013-12-20T09:24:17Z" },
-    {title: "Draft 5", time: "2013-12-20T12:14:17Z" },
-    ].forEach(function(i){
-        tmpdrafts[i.time.hash()] = i;
-    });
-    return tmpdrafts;
+function insertDraft() {
+    var newdraft = {
+        title: "Untitled Draft",
+        time: new Date().toISOString(),
+        content: ''
+    };
+    newdraft.updateTime = function(timeElem) {
+        newdraft.time = new Date().toISOString();
+        if (timeElem) {
+            $("<time>", {class: "timeago"}).attr('datetime', newdraft.time).insertAfter(timeElem).timeago();
+            timeElem.remove();
+        }
+        return newdraft;
+    }
+    var dHash = newdraft.time.hash();
+    draftData.data[dHash] = newdraft;
+    draftData.indexs.unshift(dHash);
+    createDraft(newdraft, dHash, true);
+    return dHash;
 }
+
+function loadDrafts() {
+    if (localStorage.AvroDrafts) {
+        return JSON.parse(localStorage.AvroDrafts);
+    } else {
+        return false;
+    }
+}
+
+function updateDraft(hash, content) {
+    draftData.data[hash].content = content;
+}
+
+function saveDrafts() {
+    setTimeout(function() {
+        localStorage.AvroDrafts = JSON.stringify(draftData);
+    },1);
+}
+
 //setup all the awesomeness
 $(function(){
     //remove loading..
@@ -133,11 +168,18 @@ $(function(){
         $("#middle").css({"min-height": (midHeight + 20) + "px"});
     }
     
-    $.each(createDummyDrafts(), function(key, val){
-        createDraft(val, key);
-    });
-    
+    window.draftData = loadDrafts();
+    if (draftData) {
+        draftData.indexs.forEach(function(d) {
+            createDraft(draftData.data[d], d);
+        });
+    } else {
+        draftData = {};
+        draftData.indexs = [];
+        draftData.data = {};
+    }
     setupDraftEvent();
+    var newH = insertDraft();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
@@ -194,7 +236,7 @@ $(function(){
 			$(this).height( midHeight );
 		    $(this).height( midHeight > this.scrollHeight ? midHeight : this.scrollHeight );
 		}
-    }).focus();
+    }).focus().attr('data-key', newH);
     
     $(document).on("keydown", function (e){
         //charCode of dot is 46, but event keyCode is 190 for dot. Need to figure this out.
