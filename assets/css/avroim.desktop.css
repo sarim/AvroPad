@@ -63,11 +63,19 @@
 .share {
     position: absolute;
     text-align: right;
-    bottom: 20px;
+    bottom: 25px;
     right: 15px;
     margin: auto 0 auto auto;
     height: 60px;
     width: 150px;
+}
+.sharebuttons {
+    margin-top: 5px;
+    font-size: 25px;
+}
+.sharebuttons a {
+    text-decoration: none;
+    color: white;
 }
 .txtright {
     position: absolute;
@@ -107,18 +115,24 @@
     font-size: 12px;
     float: right;
 }
+.draft li.active:before {
+    font-family: 'avro';
+    content: "\e608";
+    position: absolute;
+    margin-left: -20px;
+}
 .libutton {
     position: absolute;
-    right: 10px;
-    top: 5px;
     display: none;
-    color: pink;
 }
 .libutton span {
     background-color: black;
     padding: 4px;
 }
 .btn {
-cursor: pointer;
+    cursor: pointer;
+}
+.btn:hover {
+    color: grey;
 }
 }

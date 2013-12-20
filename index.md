@@ -31,17 +31,17 @@ layout: home
 		</div>
 		<div class="draft vason">
 			<span>Autosaved Drafts</span>
-			<span id="insertDraft" class="btn">[+]</span>
-			<span id="saveDraft" class="btn">[S]</span>
+			<span id="insertDraft" class="btn icon-plus"> </span>
+			<span id="saveDraft" class="btn icon-download"> </span>
 			<ul>
 			</ul>
 		</div>
 		<div class="vason share">
 			Share the Love <br>
 			<div class="sharebuttons">
-				<a class="facebook">&lt; F &gt;</a>
-				<a class="twitter">&lt; T &gt;</a>
-				<a class="gplus">&lt; G &gt;</a>
+				<a href="#" class="facebook"><span class="icon-facebook"></span></a>
+				<a href="#" class="twitter"><span class="icon-twitter"></span></a>
+				<a href="#" class="gplus"><span class="icon-google-plus"></span></a>
 			</div>
 		</div>
 		<div class="vason bottomfloat txtright">
