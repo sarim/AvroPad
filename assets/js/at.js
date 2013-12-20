@@ -53,6 +53,20 @@ function checkInView(elem,partial)
     return elemBottom < contTop ;
 }
 
+function shortDate() {
+    var dateFrag = new Date().toTimeString().split(":");
+    var h = dateFrag[0];
+    var dd = "AM";
+    if (h >= 12) {
+        h = h-12;
+        dd = "PM";
+    }
+    if (h == 0) {
+        h = 12;
+    }
+    return dateStr = '[' + h + ":" + dateFrag[1] + " " + dd + ']';
+}
+
 function createDraft(draftObj, key, prepend) {
     $li = $("<li>").attr('data-key', key);
     $title = $("<span>", {class: "title", html: draftObj.title });
@@ -92,12 +106,14 @@ function setupDraftEvent() {
     
     $("div.draft").on('click', "span.editbtn", function(){
         $(".libutton").hide();
-        $(this).parent().parent().find(".title").attr("contenteditable", 'true').focus();
+        $(this).parent().parent().find(".title").attr("contenteditable", 'true').select().focus();
     });
     
     $("div.draft").on('click', "span.delbtn", function(){
         $(".libutton").hide();
-        $(this).parent().parent().remove();
+        $li = $(this).parent().parent();
+        removeDraft($li.attr('data-key'));
+        $li.remove();
     });
     
     $("div.draft").on('blur', "span.title", function(e){
@@ -116,7 +132,7 @@ function setupDraftEvent() {
 
 function insertDraft() {
     var newdraft = {
-        title: "Untitled Draft",
+        title: "Untitled Draft " + shortDate() ,
         time: new Date().toISOString(),
         content: ''
     };
@@ -145,6 +161,18 @@ function loadDrafts() {
 
 function updateDraft(hash, content) {
     draftData.data[hash].content = content;
+    saveDrafts();
+}
+
+function removeDraft(hash) {
+    delete draftData.data[hash];
+    var newIndex = [];
+    draftData.indexs.forEach(function(i){
+        if (i != hash) newIndex.push(i);
+    })
+    delete draftData.indexs;
+    draftData.indexs = newIndex;
+    saveDrafts();
 }
 
 function saveDrafts() {
@@ -216,7 +244,10 @@ $(function(){
            },
            before_insert: function (value, li) {
                //save the selected value to user preferences;
-               megusta.commit(this.query.text, value);
+               setTimeout(function(){
+                   megusta.commit(this.query.text, value);
+                   updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+               },10);
                return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
