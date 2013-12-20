@@ -74,15 +74,17 @@ function createDraft(draftObj, key, prepend) {
     $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
     
     $button = $("<div>", {class: "libutton"});
-    $editbtn = $("<span>", {class: "btn editbtn", html: "[E]"}).appendTo($button);
-    $delbtn = $("<span>", {class: "btn delbtn", html: "[-]"}).appendTo($button);
-    
+    $editbtn = $("<span>", {class: "btn editbtn icon-pencil", html: ""}).appendTo($button);
+    $delbtn = $("<span>", {class: "btn delbtn icon-remove", html: ""}).appendTo($button);
+
+    $button.appendTo($li);
     $title.appendTo($li);
     $small.appendTo($li);
-    $button.appendTo($li);
     prepend ? $li.prependTo(".draft ul") : $li.appendTo(".draft ul");
     
     $timeago.timeago();
+    $("li.active").removeClass("active");
+    $li.addClass("active");
 }
 
 function setupDraftEvent() {
@@ -91,7 +93,7 @@ function setupDraftEvent() {
         $('#inputor').attr("data-key",insertDraft());
     });
     $("saveDraft").click(function(){
-        saveDraft();
+        updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
     })
     //all these are delegated events
     $("div.draft").on('mouseleave', "ul", function(){
@@ -101,24 +103,28 @@ function setupDraftEvent() {
     $("div.draft").on('mouseenter', "li", function(){
         log("li mouseenter");
         $(".libutton").hide();
-        $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
+        $(this).find(".libutton").css({top: this.offsetTop+"px", right: "0px" }).show();
     });
     
     $("div.draft").on('click', "li", function(){
-        updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
-        $hash = $(this).attr('data-key');
-        $('#inputor').val(draftData.data[$hash]);
-        $('#inputor').attr('data-key', $hash);
+        if (! $(this).attr('contenteditable')) {
+            $("li.active").removeClass("active");
+            $(this).addClass("active");
+            updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+            $hash = $(this).attr('data-key');
+            $('#inputor').val(draftData.data[$hash].content);
+            $('#inputor').attr('data-key', $hash);
+        }
     });
     
     $("div.draft").on('click', "span.editbtn", function(e){
-        e.preventDefault();
+        e.stopPropagation();
         $(".libutton").hide();
         $(this).parent().parent().find(".title").attr("contenteditable", 'true').select().focus();
     });
     
     $("div.draft").on('click', "span.delbtn", function(e){
-        e.preventDefault();
+        e.stopPropagation();
         $(".libutton").hide();
         $li = $(this).parent().parent();
         removeDraft($li.attr('data-key'));
@@ -130,7 +136,6 @@ function setupDraftEvent() {
         $(this).removeAttr("contenteditable");
         var curHash = $(this).parent().attr('data-key');
         draftData.data[curHash].updateTime($(this).parent().find("time")).title = this.textContent;
-        saveDraft();
     });
     $("div.draft").on('keydown', "span.title", function(e){
         if (e.keyCode == 13 || e.charCode == 13) {
@@ -265,8 +270,9 @@ $(function(){
            },
            before_insert: function (value, li) {
                //save the selected value to user preferences;
+               var qtxt = this.query.text;
                setTimeout(function(){
-                   megusta.commit(this.query.text, value);
+                   megusta.commit(qtxt, value);
                    updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
                },10);
                return /*" " +*/ value;
