@@ -104,12 +104,21 @@ function setupDraftEvent() {
         $(this).find(".libutton").css({top: ($(this).offset().top - 315) +"px", right: "10px" }).show();
     });
     
-    $("div.draft").on('click', "span.editbtn", function(){
+    $("div.draft").on('click', "li", function(){
+        updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+        $hash = $(this).attr('data-key');
+        $('#inputor').val(draftData.data[$hash]);
+        $('#inputor').attr('data-key', $hash);
+    });
+    
+    $("div.draft").on('click', "span.editbtn", function(e){
+        e.preventDefault();
         $(".libutton").hide();
         $(this).parent().parent().find(".title").attr("contenteditable", 'true').select().focus();
     });
     
-    $("div.draft").on('click', "span.delbtn", function(){
+    $("div.draft").on('click', "span.delbtn", function(e){
+        e.preventDefault();
         $(".libutton").hide();
         $li = $(this).parent().parent();
         removeDraft($li.attr('data-key'));
