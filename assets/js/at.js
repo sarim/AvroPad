@@ -69,16 +69,12 @@ $(function(){
     }
     
     window.draftData = loadDrafts();
-    if (draftData) {
-        draftData.indexs.forEach(function(d) {
-            createDraft(draftData.data[d], d);
-        });
-    } else {
-        draftData = {};
-        draftData.indexs = [];
-        draftData.data = {};
-    }
+    draftData.indexs.forEach(function(d) {
+        createDraft(draftData.data[d], d);
+    });
     setupDraftEvent();
+    
+    //creating new draft at windowload
     var newH = insertDraft();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
@@ -119,7 +115,6 @@ $(function(){
                var qtxt = this.query.text;
                setTimeout(function(){
                    megusta.commit(qtxt, value);
-                   updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
                },10);
                return /*" " +*/ value;
            },
@@ -136,6 +131,10 @@ $(function(){
            }
         }
     }).on('keyup focus',function(e){
+        if ( [13,32].indexOf(e.keyCode) !== -1 ) {
+            log("space || enter: saving draft");
+            updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+        }
 		if (isMobile()) {
 			$(this).height( midHeight );
 		    $(this).height( midHeight > this.scrollHeight ? midHeight : this.scrollHeight );
