@@ -25,7 +25,7 @@ function createDraft(draftObj, key, prepend) {
     if (isMobile()) {
         $opt = $("<option>").attr('data-key', key);
         $opt.html(draftObj.title);
-        $opt.attr('data-time', draftObj.time);
+        //$opt.attr('data-time', draftObj.time);
         prepend ? $opt.prependTo(".draft select") : $opt.appendTo(".draft select");
         
     } else {
@@ -57,6 +57,33 @@ function setupDraftEvent() {
     $("saveDraft").click(function(){
         updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
     })
+    
+    $("#mobEditBtn").click(function(){
+        var $opt = $(".draft select :selected");
+        var newTitle = prompt("Enter New Title",$opt.val());
+        if (newTitle) {
+            $opt.html(newTitle);
+            var curHash = $opt.attr("data-key");
+            draftData.data[curHash].updateTime().title = newTitle;
+            saveDrafts();
+        }
+        $("body").focus();
+    });
+    $("#mobDelBtn").click(function(){
+        var $opt = $(".draft select :selected");
+        var curHash = $opt.attr("data-key");
+        removeDraft(curHash, $opt);
+        $("body").focus();
+    });
+    $("#mobViewBtn").click(function(){
+        var $opt = $(".draft select :selected");
+        var $hash = $opt.attr("data-key");
+        
+        updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+        $('#inputor').val(draftData.data[$hash].content);
+        $('#inputor').attr('data-key', $hash);
+        $('#inputor').focus();
+    });
     //all these are delegated events
     $("div.draft").on('mouseleave', "ul", function(){
         $(".libutton").hide();
@@ -89,8 +116,7 @@ function setupDraftEvent() {
         e.stopPropagation();
         $(".libutton").hide();
         $li = $(this).parent().parent();
-        removeDraft($li.attr('data-key'));
-        $li.remove();
+        removeDraft($li.attr('data-key'), $li);
     });
     
     $("div.draft").on('blur', "span.title", function(e){
@@ -98,6 +124,7 @@ function setupDraftEvent() {
         $(this).removeAttr("contenteditable");
         var curHash = $(this).parent().attr('data-key');
         draftData.data[curHash].updateTime($(this).parent().find("time")).title = this.textContent;
+        saveDrafts();
     });
     $("div.draft").on('keydown', "span.title", function(e){
         if (e.keyCode == 13 || e.charCode == 13) {
@@ -155,15 +182,18 @@ function updateDraft(hash, content) {
     saveDrafts();
 }
 
-function removeDraft(hash) {
-    delete draftData.data[hash];
-    var newIndex = [];
-    draftData.indexs.forEach(function(i){
-        if (i != hash) newIndex.push(i);
-    })
-    delete draftData.indexs;
-    draftData.indexs = newIndex;
-    saveDrafts();
+function removeDraft(hash, $i) {
+    if (confirm("Wanna delete the draft ?")) {
+        delete draftData.data[hash];
+        var newIndex = [];
+        draftData.indexs.forEach(function(i){
+            if (i != hash) newIndex.push(i);
+        })
+        delete draftData.indexs;
+        draftData.indexs = newIndex;
+        $i.remove();
+        saveDrafts();
+    }
 }
 
 function saveDrafts() {
