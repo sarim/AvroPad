@@ -30,13 +30,13 @@ function createDraft(draftObj, key, prepend) {
         
     } else {
         $li = $("<li>").attr('data-key', key);
-        $title = $("<span>", {class: "title", html: draftObj.title });
+        $title = $("<span>", {'class': "title", 'html': draftObj.title });
         $small = $("<small>");
-        $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
+        $timeago = $("<time>", {'class': "timeago"}).attr('datetime', draftObj.time).appendTo($small);
     
-        $button = $("<div>", {class: "libutton"});
-        $editbtn = $("<span>", {class: "btn editbtn icon-pencil", html: ""}).appendTo($button);
-        $delbtn = $("<span>", {class: "btn delbtn icon-remove", html: ""}).appendTo($button);
+        $button = $("<div>", {'class': "libutton"});
+        $editbtn = $("<span>", {'class': "btn editbtn icon-pencil", 'html': ""}).appendTo($button);
+        $delbtn = $("<span>", {'class': "btn delbtn icon-remove", 'html': ""}).appendTo($button);
 
         $button.appendTo($li);
         $title.appendTo($li);
