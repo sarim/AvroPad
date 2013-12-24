@@ -1,3 +1,12 @@
+function isMobile() {
+	if (matchMedia("screen and (min-width:800px)").matches)
+		return false;
+	else {
+        midHeight = $(window).height() - $("#rightbar").height() - 85 - 20;
+	    return true;
+	}		
+}
+
 function shortDate() {
     var dateFrag = new Date().toTimeString().split(":");
     var h = dateFrag[0];
@@ -13,23 +22,31 @@ function shortDate() {
 }
 
 function createDraft(draftObj, key, prepend) {
-    $li = $("<li>").attr('data-key', key);
-    $title = $("<span>", {class: "title", html: draftObj.title });
-    $small = $("<small>");
-    $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
+    if (isMobile()) {
+        $opt = $("<option>").attr('data-key', key);
+        $opt.html(draftObj.title);
+        $opt.attr('data-time', draftObj.time);
+        prepend ? $opt.prependTo(".draft select") : $opt.appendTo(".draft select");
+        
+    } else {
+        $li = $("<li>").attr('data-key', key);
+        $title = $("<span>", {class: "title", html: draftObj.title });
+        $small = $("<small>");
+        $timeago = $("<time>", {class: "timeago"}).attr('datetime', draftObj.time).appendTo($small);
     
-    $button = $("<div>", {class: "libutton"});
-    $editbtn = $("<span>", {class: "btn editbtn icon-pencil", html: ""}).appendTo($button);
-    $delbtn = $("<span>", {class: "btn delbtn icon-remove", html: ""}).appendTo($button);
+        $button = $("<div>", {class: "libutton"});
+        $editbtn = $("<span>", {class: "btn editbtn icon-pencil", html: ""}).appendTo($button);
+        $delbtn = $("<span>", {class: "btn delbtn icon-remove", html: ""}).appendTo($button);
 
-    $button.appendTo($li);
-    $title.appendTo($li);
-    $small.appendTo($li);
-    prepend ? $li.prependTo(".draft ul") : $li.appendTo(".draft ul");
+        $button.appendTo($li);
+        $title.appendTo($li);
+        $small.appendTo($li);
+        prepend ? $li.prependTo(".draft ul") : $li.appendTo(".draft ul");
     
-    $timeago.timeago();
-    $("li.active").removeClass("active");
-    $li.addClass("active");
+        $timeago.timeago();
+        $("li.active").removeClass("active");
+        $li.addClass("active");
+    }
 }
 
 function setupDraftEvent() {

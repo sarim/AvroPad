@@ -28,15 +28,6 @@ function toggleLang() {
     }
 }
 
-function isMobile() {
-	if (matchMedia("screen and (min-width:800px)").matches)
-		return false;
-	else {
-        midHeight = $(window).height() - $("#rightbar").height() - 85 - 20;
-	    return true;
-	}		
-}
-
 // from http://stackoverflow.com/a/15710692/726122
 String.prototype.hash = function(){
   return this.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              

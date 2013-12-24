@@ -35,6 +35,8 @@ layout: home
 			<span id="saveDraft" class="btn icon-download"> </span>
 			<ul>
 			</ul>
+			<select>
+			</select>
 		</div>
 		<div class="vason share">
 			Share the Love <br>

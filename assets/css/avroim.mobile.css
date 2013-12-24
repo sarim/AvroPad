@@ -93,4 +93,9 @@ body {
     margin-top: 10px;
     overflow-y: hidden;
 }
+
+.draft ul {
+    display: none;
+}
+
 }
