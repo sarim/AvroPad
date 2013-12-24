@@ -30,13 +30,21 @@ layout: home
 			This project is an attempt to port Avro Phonetic to web
 		</div>
 		<div class="draft vason">
+			<center>
 			<span>Autosaved Drafts</span>
-			<span id="insertDraft" class="btn icon-plus"> </span>
-			<span id="saveDraft" class="btn icon-download"> </span>
+			<span id="insertDraft" class="btn icon-plus tapbtn"></span>
+			<span id="saveDraft" class="btn icon-download tapbtn"></span>
+			</center>
 			<ul>
 			</ul>
+			<br>
 			<select>
 			</select>
+			<div id="mobilebtn">
+				<span id="mobEditBtn" class="icon-pencil tapbtn"></span>
+				<span id="mobViewBtn" class="icon-rocket tapbtn"></span>
+				<span id="mobDelBtn"  class="icon-remove tapbtn"></span>
+			</div>
 		</div>
 		<div class="vason share">
 			Share the Love <br>

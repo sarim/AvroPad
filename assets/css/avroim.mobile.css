@@ -93,9 +93,42 @@ body {
     margin-top: 10px;
     overflow-y: hidden;
 }
-
+.sharebuttons {
+    margin-top: 5px;
+    font-size: 25px;
+}
+.sharebuttons a {
+    text-decoration: none;
+    color: white;
+}
+.draft {
+    margin-top:20px;
+}
 .draft ul {
     display: none;
+}
+.draft select {
+    font-size: 16px;
+    background: black;
+    color: white;
+    -webkit-appearance: none;
+    border: 0;
+    padding: 7px;
+    max-width: 180px;
+}
+#mobilebtn {
+    display: inline;
+}
+.tapbtn {
+    margin-left: 3px;
+    font-size: 20px;
+    background: white;
+    color: black;
+    padding: 6px;
+    -webkit-border-radius: 50%;
+}
+.tapbtn:hover {
+    color: blue;
 }
 
 }

@@ -139,5 +139,7 @@
 .draft select {
     display: none;
 }
-
+#mobilebtn {
+    display: none;
+}
 }
