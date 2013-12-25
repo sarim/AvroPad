@@ -75,7 +75,7 @@ function setupDraftEvent() {
         removeDraft(curHash, $opt);
         $("body").focus();
     });
-    $("#mobViewBtn").click(function(){
+    $(".draft select").on('change', function(){
         var $opt = $(".draft select :selected");
         var $hash = $opt.attr("data-key");
         

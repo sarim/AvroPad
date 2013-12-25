@@ -114,7 +114,7 @@ body {
     -webkit-appearance: none;
     border: 0;
     padding: 7px;
-    max-width: 180px;
+    width: 70%;
 }
 #mobilebtn {
     display: inline;
@@ -130,5 +130,18 @@ body {
 .tapbtn:hover {
     color: #2a9fd6;
 }
-
+.centerme {
+    margin-left: auto;
+    margin-right: auto;
+}
+.drafttitle {
+    width: 250px;
+}
+.draftbody {
+    width: 100%;
+    max-width:500px;
+}
+#mobViewBtn {
+    display: none;
+}
 }
