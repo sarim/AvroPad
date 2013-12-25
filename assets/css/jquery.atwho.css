@@ -61,3 +61,12 @@
         overflow-y: auto;
     }
 }
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .atwho-view ul li {
+        display: inline;
+        padding: 7px 12px;
+        border-bottom: none;
+        float:left;
+    }
+}
