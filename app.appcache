@@ -6,5 +6,9 @@ assets/img/apple-touch-startup-image.png
 assets/img/avrosprite.png
 assets/img/fg.jpg
 assets/img/bg.jpg
+assets/fonts/avro.eot
+assets/fonts/avro.svg
+assets/fonts/avro.ttf
+assets/fonts/avro.woff
 assets/js/app.min.js
 assets/css/style.min.css
