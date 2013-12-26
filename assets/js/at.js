@@ -106,7 +106,7 @@ $(function(){
                var qtxt = this.query.text;
                setTimeout(function(){
                    megusta.commit(qtxt, value);
-               },10);
+               },500);
                return /*" " +*/ value;
            },
            // Next two callback will mess up suggestion list if not overriden.
