@@ -55,6 +55,7 @@ layout: home
 				<a href="#" class="twitter"><span class="icon-twitter"></span></a>
 				<a href="#" class="gplus"><span class="icon-google-plus"></span></a>
 			</div>
+			<span>Privacy Policy</span>
 		</div>
 		<div class="vason bottomfloat txtright">
 			(c) OmicronLab 2013
