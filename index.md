@@ -50,15 +50,11 @@ layout: home
 		</div>
 		<div class="vason share">
 			Share the Love <br>
-			<div class="sharebuttons">
-				<a href="#" class="facebook"><span class="icon-facebook"></span></a>
-				<a href="#" class="twitter"><span class="icon-twitter"></span></a>
-				<a href="#" class="gplus"><span class="icon-google-plus"></span></a>
-			</div>
-			<span>Privacy Policy</span>
+			{% include share.html %}
+			<span><a href="privacy.html">Privacy Policy</a></span>
 		</div>
 		<div class="vason bottomfloat txtright">
-			(c) OmicronLab 2013
+			<a href="http://omicronlab.com">OmicronLab 2013</a>
 		</div>
 	</div>
 </div>

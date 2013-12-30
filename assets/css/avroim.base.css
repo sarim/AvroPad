@@ -31,3 +31,16 @@ div#_atssh {
     position: absolute;
     bottom: 10px;
 }
+
+.sharebuttons {
+    margin-top: 5px;
+    font-size: 25px;
+}
+.sharebuttons a, .vason a {
+    text-decoration: none;
+    color: white;
+}
+
+.sharebuttons a:hover, .vason a:hover {
+    color: #2a9fd6;
+}

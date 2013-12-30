@@ -93,14 +93,6 @@ body {
     margin-top: 10px;
     overflow-y: hidden;
 }
-.sharebuttons {
-    margin-top: 5px;
-    font-size: 25px;
-}
-.sharebuttons a {
-    text-decoration: none;
-    color: white;
-}
 .draft {
     margin-top:20px;
 }

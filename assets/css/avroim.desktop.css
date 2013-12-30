@@ -63,19 +63,11 @@
 .share {
     position: absolute;
     text-align: right;
-    bottom: 25px;
+    bottom: 50px;
     right: 15px;
     margin: auto 0 auto auto;
     height: 60px;
     width: 150px;
-}
-.sharebuttons {
-    margin-top: 5px;
-    font-size: 25px;
-}
-.sharebuttons a {
-    text-decoration: none;
-    color: white;
 }
 .txtright {
     position: absolute;
