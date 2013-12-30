@@ -115,7 +115,9 @@
               return;
             }
             e.preventDefault();
-            view.choose(" ");
+            setTimeout(function(){
+                view.choose(" ");
+            },50);
             break;              
           case KEY_CODE.ENTER:
             if (!view.visible()) {
