@@ -152,6 +152,7 @@ function insertDraft() {
     draftData.data[dHash] = newdraft;
     draftData.indexs.unshift(dHash);
     createDraft(newdraft, dHash, true);
+    limitDraft();
     return dHash;
 }
 
@@ -182,8 +183,18 @@ function updateDraft(hash, content) {
     saveDrafts();
 }
 
-function removeDraft(hash, $i) {
-    if (confirm("Wanna delete the draft ?")) {
+function limitDraft() {
+    var dLength = draftData.indexs.length;
+    if (dLength > 5) {
+        $hash = draftData.indexs[dLength-1];
+        $li = $(".draft [data-key=" + $hash + "]");
+        removeDraft($hash, $li, true);
+        limitDraft();
+    }
+}
+
+function removeDraft(hash, $i, isConfirmed) {
+    if (isConfirmed || confirm("Wanna delete the draft ?")) {
         delete draftData.data[hash];
         var newIndex = [];
         draftData.indexs.forEach(function(i){
