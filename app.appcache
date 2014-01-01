@@ -1,5 +1,7 @@
 CACHE MANIFEST
 
+CACHE:
+
 ./
 assets/img/apple-touch-icon.png
 assets/img/apple-touch-startup-image.png
@@ -12,3 +14,9 @@ assets/fonts/avro.ttf
 assets/fonts/avro.woff
 assets/js/app.min.js
 assets/css/style.min.css
+
+
+NETWORK:
+
+http://www.google-analytics.com/*
+https://www.google-analytics.com/*
