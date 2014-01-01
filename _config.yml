@@ -6,7 +6,7 @@ pygments: true
 # auto: true
 rdiscount:
   extensions: [smart]
-google_analytics_tracking_id: UA-424397-5
+google_analytics_tracking_id: UA-424397-9
 env: debug
 scriptname: assets/js/app.min.js
 stylename: assets/css/style.min.css
