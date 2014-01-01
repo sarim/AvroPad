@@ -194,7 +194,7 @@ function limitDraft() {
 }
 
 function removeDraft(hash, $i, isConfirmed) {
-    if (isConfirmed || confirm("Wanna delete the draft ?")) {
+    if (isConfirmed || confirm("Delete the draft?")) {
         delete draftData.data[hash];
         var newIndex = [];
         draftData.indexs.forEach(function(i){
