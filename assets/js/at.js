@@ -44,6 +44,15 @@ function checkInView(elem,partial)
     return elemBottom < contTop ;
 }
 
+function isMobile() {
+	if (matchMedia("screen and (min-width:800px)").matches)
+		return false;
+	else {
+        midHeight = $(window).height() - $("#rightbar").height() - 85 - 20;
+	    return true;
+	}		
+}
+
 //setup all the awesomeness
 $(function(){
     //remove loading..
@@ -58,15 +67,6 @@ $(function(){
     if (isMobile()) {
         $("#middle").css({"min-height": (midHeight + 20) + "px"});
     }
-    
-    window.draftData = loadDrafts();
-    draftData.indexs.forEach(function(d) {
-        createDraft(draftData.data[d], d);
-    });
-    setupDraftEvent();
-    
-    //creating new draft at windowload
-    var newH = insertDraft();
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
@@ -123,14 +123,14 @@ $(function(){
         }
     }).on('keyup focus',function(e){
         if ( [13,32].indexOf(e.keyCode) !== -1 ) {
-            log("space || enter: saving draft");
-            updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
+            // log("space || enter: saving draft");
+            // updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
         }
 		if (isMobile()) {
 			$(this).height( midHeight );
 		    $(this).height( midHeight > this.scrollHeight ? midHeight : this.scrollHeight );
 		}
-    }).focus().attr('data-key', newH);
+    }).focus();
     
     $(document).on("keydown", function (e){
         //charCode of dot is 46, but event keyCode is 190 for dot. Need to figure this out.

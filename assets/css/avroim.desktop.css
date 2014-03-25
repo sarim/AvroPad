@@ -131,6 +131,10 @@
 .draft select {
     display: none;
 }
+input.draft_name {
+    border: 0;
+    background: transparent;
+}
 #mobilebtn {
     display: none;
 }
