@@ -64,6 +64,8 @@ var myDraft = function($scope) {
     
 };
 
+myDraft.$inject = ['$scope'];
+
 $(document).on('click', '.draft_edit', function(){
     $(this).parent().parent().find(".draft_name").removeAttr('readonly').off('blur').on('blur', function(){
         $(this).attr('readonly','readonly');
