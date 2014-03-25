@@ -2,7 +2,7 @@
 layout: home
 ---
 
-<div class="container wrapper">
+<div class="container wrapper" ng-controller="myDraft">
 	<div id="leftbar" class="leftbar">
 		<div id="indicator">
 			<span id="mobilehint" class="vason">Tap Here or Swype Anywhere<br>to toggle language</span>
@@ -19,7 +19,7 @@ layout: home
 	</div>
 	<div id="middle">
 	    <div id="main">
-			<textarea id="inputor" class="inputor" placeholder="Write Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
+			<textarea ng-model="selected_draft.content" id="inputor" class="inputor" placeholder="Write Here" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"></textarea>
 	    </div>
 	</div>
 	<div id="rightbar">
@@ -29,25 +29,38 @@ layout: home
 		<div class="vason txtright txttop">
 			This project is an attempt to port Avro Phonetic to web
 		</div>
-		<div class="draft vason">
-			<div class="centerme drafttitle">
-				<span>Autosaved Drafts</span>
-				<span id="insertDraft" class="btn icon-plus tapbtn"></span>
-				<span id="saveDraft" class="btn icon-download tapbtn"></span>
-			</div>
-			<ul>
-			</ul>
-			<br>
-			<div class="centerme draftbody">
-				<select>
-				</select>
-				<div id="mobilebtn">
-					<span id="mobEditBtn" class="icon-pencil tapbtn"></span>
-					<span id="mobViewBtn" class="icon-rocket tapbtn"></span>
-					<span id="mobDelBtn"  class="icon-remove tapbtn"></span>
-				</div>
-			</div>
-		</div>
+        {% raw %}
+        <div class="draft vason">
+            <div class="centerme drafttitle">
+                <span>Your Drafts</span><br>
+                <span id="insertDraft" class="btn" ng-click="on_add_draft()"><span class="icon-plus tapbtn"></span>Add new Draft</span>
+            </div>
+            <ul>
+                <li ng-class="{active: selected_draft == draft}" ng-repeat="draft in drafts | orderBy:'date':true">
+                    
+                    <div class="libutton">
+                        <span class="btn editbtn icon-pencil draft_edit"></span>
+                        <span class="btn delbtn icon-remove" ng-click="on_del_draft(draft)"></span>
+                    </div>
+                    
+                    <a href="#" ng-click="on_select_draft(draft)">
+                        <input class="title draft_name" type="text" ng-model="draft.name" readonly>
+                        <small><time class="timeago" datetime="{{draft.date.toISOString()}}">{{draft.date.toUTCString()}}</time></small>
+                    </a>
+                </li>
+            </ul>
+            <br>
+            <div class="centerme draftbody">
+                <select ng-model="selected_draft"
+                        ng-options="draft.name for draft in drafts | orderBy:'date':true">
+                </select>
+                <div id="mobilebtn">
+                    <span id="mobEditBtn" class="icon-pencil tapbtn" ng-click="on_edit_draft()"></span>
+                    <span id="mobDelBtn"  class="icon-remove tapbtn" ng-click="on_del_draft()"></span>
+                </div>
+            </div>
+        </div>
+        {% endraw %}
 		<div class="vason share">
 			Share the Love <br>
 			{% include share.html %}

@@ -94,7 +94,8 @@
     padding: 0;
 }
 .draft ul li {
-    padding: 15px 0;
+    padding: 5px 0 15px 0;
+    position: relative;
 }
 .draft ul li:hover {
     background-color: rgba(20,20,20,0.4);
@@ -116,6 +117,11 @@
 .libutton {
     position: absolute;
     display: none;
+    right: 0;
+    top:0;
+}
+.draft ul li:hover .libutton {
+    display: block;
 }
 .libutton span {
     background-color: black;
@@ -134,6 +140,8 @@
 input.draft_name {
     border: 0;
     background: transparent;
+    color: white;
+    font-size: 18px;
 }
 #mobilebtn {
     display: none;

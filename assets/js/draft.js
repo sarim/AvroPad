@@ -65,7 +65,7 @@ var myDraft = function($scope) {
 };
 
 $(document).on('click', '.draft_edit', function(){
-    $(this).parent().find(".draft_name").removeAttr('readonly').off('blur').on('blur', function(){
+    $(this).parent().parent().find(".draft_name").removeAttr('readonly').off('blur').on('blur', function(){
         $(this).attr('readonly','readonly');
         var anguscope = angular.element(this).scope();
         anguscope.on_save_draft();
