@@ -76,9 +76,9 @@ div#_atssh {
     top: 0;
     left: 0;
 
-    -webkit-animation: circlebounce 2.0s infinite ease-in-out;
-    animation: circlebounce 2.0s infinite ease-in-out;
-    -moz-animation: circlebounce 2.0s infinite ease-in-out;
+    -webkit-animation: circlebounce 2000ms infinite ease-in-out;
+    animation: circlebounce 2000ms infinite ease-in-out;
+    -moz-animation: circlebounce 2000ms infinite ease-in-out;
 }
 
 .spinner-bounce-circle div:nth-child(1) {
