@@ -1,4 +1,6 @@
 CACHE MANIFEST
+# Updated: 26 March 2014
+# Version: 0.9
 
 CACHE:
 
@@ -14,7 +16,6 @@ assets/fonts/avro.ttf
 assets/fonts/avro.woff
 assets/js/app.min.js
 assets/css/style.min.css
-
 
 NETWORK:
 
