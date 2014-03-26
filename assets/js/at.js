@@ -49,10 +49,21 @@ function isMobile() {
 		return false;
 	else {
         midHeight = $(window).height() - $("#rightbar").height() - 85 - 20;
+        if (midHeight < 240) midHeight = 240;
 	    return true;
 	}		
 }
 
+function fixTxtHeight() {
+    if (isMobile()) {
+        $("#middle").css({"min-height": (midHeight + 20) + "px"});
+		$('#inputor').height( midHeight );
+	    $('#inputor').height( midHeight > $('#inputor')[0].scrollHeight ? midHeight : $('#inputor')[0].scrollHeight );
+    } else {
+        $("#middle").css("min-height",'');
+        $('#inputor').css('height','');
+	}    
+}
 //setup all the awesomeness
 $(function(){
     //remove loading..
@@ -64,9 +75,9 @@ $(function(){
 		$("#inputor").focus();
 	});
     
-    if (isMobile()) {
-        $("#middle").css({"min-height": (midHeight + 20) + "px"});
-    }
+    fixTxtHeight();
+    
+    $(window).resize(fixTxtHeight);
     
     var inp = $('#inputor').prop( "disabled", false ).atwho({
         at: '',
@@ -126,10 +137,7 @@ $(function(){
             // log("space || enter: saving draft");
             // updateDraft($('#inputor').attr('data-key'),$('#inputor').val());
         }
-		if (isMobile()) {
-			$(this).height( midHeight );
-		    $(this).height( midHeight > this.scrollHeight ? midHeight : this.scrollHeight );
-		}
+        fixTxtHeight();
     }).focus();
     
     $(document).on("keydown", function (e){
