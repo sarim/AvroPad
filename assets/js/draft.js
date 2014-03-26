@@ -1,4 +1,5 @@
-var myDraft = function($scope) {
+var myNgModule = angular.module('avro', ['angularMoment'])
+.controller('myDraft', ['$scope',function($scope) {
     $scope.drafts = [];
     
     if (localStorage.avroDrafts) {
@@ -62,9 +63,7 @@ var myDraft = function($scope) {
     
     $scope.on_add_draft();
     
-};
-
-myDraft.$inject = ['$scope'];
+}]);
 
 $(document).on('click', '.draft_edit', function(){
     $(this).parent().parent().find(".draft_name").removeAttr('readonly').off('blur').on('blur', function(){

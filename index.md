@@ -48,7 +48,7 @@ layout: home
                     </div>
                     <a href="#" ng-click="on_select_draft(draft)">
                         <input class="title draft_name" type="text" ng-model="draft.name" readonly>
-                        <small><time class="timeago" datetime="{{draft.date.toISOString()}}">{{draft.date.toUTCString()}}</time></small>
+                        <small><span am-time-ago="draft.date"></span></small>
                     </a>
                 </li>
             </ul>
