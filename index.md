@@ -1,7 +1,12 @@
 ---
 layout: home
 ---
-
+<div id="loading">
+    <div class="spinner-bounce-circle">
+        <div></div>
+        <div></div>
+    </div>
+</div>
 <div class="container wrapper" ng-controller="myDraft">
 	<div id="leftbar" class="leftbar">
 		<div id="indicator">
@@ -36,13 +41,11 @@ layout: home
                 <span id="insertDraft" class="btn" ng-click="on_add_draft()"><span class="icon-plus tapbtn"></span>Add new Draft</span>
             </div>
             <ul>
-                <li ng-class="{active: selected_draft == draft}" ng-repeat="draft in drafts | orderBy:'date':true">
-                    
+                <li ng-class="{active: selected_draft == draft}" ng-repeat="draft in drafts | orderBy:'date':true">                    
                     <div class="libutton">
                         <span class="btn editbtn icon-pencil draft_edit"></span>
                         <span class="btn delbtn icon-remove" ng-click="on_del_draft(draft)"></span>
                     </div>
-                    
                     <a href="#" ng-click="on_select_draft(draft)">
                         <input class="title draft_name" type="text" ng-model="draft.name" readonly>
                         <small><time class="timeago" datetime="{{draft.date.toISOString()}}">{{draft.date.toUTCString()}}</time></small>

@@ -44,3 +44,58 @@ div#_atssh {
 .sharebuttons a:hover, .vason a:hover {
     color: #2a9fd6;
 }
+
+#loading {
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/bg.jpg') repeat;
+    position: fixed;
+}
+
+.spinner-bounce-circle
+{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin: 0 auto;
+    top: 50%;
+    margin-top: -100px;
+}
+
+.spinner-bounce-circle div
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #333;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-animation: circlebounce 2.0s infinite ease-in-out;
+    animation: circlebounce 2.0s infinite ease-in-out;
+    -moz-animation: circlebounce 2.0s infinite ease-in-out;
+}
+
+.spinner-bounce-circle div:nth-child(1) {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+    -moz-animation-delay: -1.0s;
+}
+
+@-webkit-keyframes circlebounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+@-moz-keyframes circlebounce {
+    0%, 100% { -moz-transform: scale(0.0); }
+    50% { -moz-transform: scale(1.0); }
+}
+@keyframes circlebounce {
+    0%, 100% { transform: scale(0.0); }
+    50% { transform: scale(1.0); }
+}
